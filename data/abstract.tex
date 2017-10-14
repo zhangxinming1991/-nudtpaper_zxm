@@ -1,21 +1,21 @@
 ﻿\begin{cabstract}
-国防科学技术大学是一所直属中央军委的综合性大学。1984年,学校经国务院、中央军委和教育部批准首批成立研究生院，%
-肩负着为全军培养高级科学和工程技术人才与指挥人才，培训高级领导干部，从事先进武器装备和国防关键技术研究的重要任务。%
-国防科技大学是全国重点大学，也是全国首批进入国家“211工程” 建设并获中央专项经费支持的全国重点院校之一。%
-学校前身是1953年创建于哈尔滨的中国人民解放军军事工程学院，简称“哈军工”。
+今年来，互联网上图片的数据量急剧增长，如何快速,准确的从众多图片中找到目标图片或者相似图片，成为了研究的热点。而以图搜图在该背景下变得十分流行，该技术较传统的以标签识图具有更高的搜索准确性，用户体验相当好。以图搜图包含了许多图像处理的技术，其中特征提取技术最为关键。
+
+特征提取是模式识别、基于内容的图像检索的应用的关键步骤，因为后续其他的图像处理步骤是在此基础上进行的。在众多的特征提取算法中，SIFT 算法最为著名，该算法提取的特征点与图像的旋转，大小无关，对于噪声，光线的容忍度也相当高，是一个划时代的特征提取算法。但是该算法的时间复杂度为指数级别的，难以满足实时性要求高的场合。因此后续有众多研究者对该算法进行优化研究，主要分为从算法本身优化和通过硬件加速两方面。改进算法分别有SURF、ORB以及MSERS等。硬件加速分为GPU和FPGA。本文的工作和硬件加速是同一类型的，但是本文是基于大数据处理框架Spark 进行加速的。在众多大数据处理框架中，spark 是了一个基于内存方式的数据处理框架，在处理速度上有明显的优势。在此之前，暂时还没有研究者在Spark上进行大规模图像库特征提取工作的研究，于是本文基于Spark处理框架，在上面开展大规模图像库特征提取的研究工作。
+
+在本文中，我们设计了一个基于spark 的大规模图像特征提取框架。该框架主要包含三部分：1）图像基础处理接口；2）sift特征提取算法；3）图片的序列化。针对图片集合中图片大小相差太大，导致负载不均衡这一问题，我们提出了分割式特征提取方法，将大图片分割成小子块，以提高并行度。针对分割式算法中产生的shuffle 问题，我们进一步提出了shuffle-effient分割式提取算法。 实验结果表明，本文提出的图像特征提取框架取得了较好的加速效果。使用7台机器，处理4g图片集合，相对于单机提取，加速比达到了19.5，优于GPU的加速比。 分割式提取算法较不分割提取算法在处理480M 图片集合将提取速度进一步提高了7.8 倍基础。shuffle-effient 分割式特征提取算法有效的减少了shuffle size，进一步提升了特征提取的时间。
 \end{cabstract}
-\ckeywords{国防科学技术大学; 211; 哈军工}
+\ckeywords{大数据; 图像特征提取; Spark; SIFT算法; 负载均衡;}
 
 \begin{eabstract}
-National University of Defense Technology is a comprehensive national key university based in Changsha, %
-Hunan Province, China. It is under the dual supervision of the Ministry of National Defense %
-and the Ministry of Education, designated for Project 211 and Project 985, %
-the two national plans for facilitating the development of Chinese higher education. %
+Nowadays, the amount of pictures on the Internet has increased dramatically, and how to quickly and accurately find the target pictures or similar pictures from many pictures has become a hot spot of research. The content-based image retrieval has becomes more popular which has more accurate and better in user experience. The content-based image retrieval contains a lot of techniques of image processing, including feature extraction technology which is most important technique.
 
-NUDT was originally founded in 1953 as the Military Academy of Engineering in Harbin of Heilongjiang Province. %
-In 1970 the Academy of Engineering moved southwards to Changsha and was renamed Changsha Institute of Technology.%
- The Institute changed its name to National University of Defense Technology in 1978.
+Feature extraction is a key step in pattern recognition and content based image retrieval, because other subsequent image processing steps are carried out on this basis.SIFT algorithm is the most famous among other feature extraction algorithms and the extracted feature points is not effected by the rotation and size of image. What is more, its tolerance for noise, the light is quite high, So SIFT is a landmark feature extraction algorithm. However, the time complexity of the algorithm is exponential, so it is difficult to meet the requirements of real-time. Therefore, many researchers have optimized the algorithm, which can be divided into two aspects: the optimization of the algorithm itself and the acceleration of the hardware. The improved algorithms are SURF, ORB and MSERS respectively. Hardware acceleration is divided into GPU and FPGA. The work in this paper is similar as hardware acceleration, but it based on Spark ,a big data processing framework. In many large data processing frameworks, spark is a memory based data processing framework, which has obvious advantages in processing speed.Prior to this, yet no research on large-scale image database features in Spark extraction, this paper Spark processing framework based on the research work carried out in a large image database in the above feature extraction.
+
+In this paper, we design a large scale image feature extraction framework based on spark. The framework consists of three parts: 1) image basic processing interface; 2) SIFT feature extraction algorithm; 3) image serialization. Aiming at the problem that the picture size is too large in the picture set, which leads to unbalanced load, we propose a segmentation feature extraction method. The large image is divided into small blocks, so as to improve the parallelism.In view of the shuffle problem in the segmentation algorithm, we further propose the shuffle-effient split type extraction algorithm.
+
+Experimental results show that our framework achieves good speedup. With 7 machines, the 4G image set is processed, and the speedup is 19.5 compared with the single machine extraction. The split type extraction algorithm can further improve the extraction speed by 7.8 times compared with the non segmentation algorithm in dealing with the 480M image set. Shuffle-effient segmentation feature extraction algorithm effectively reduces the shuffle size, and further improves the feature extraction time.
 
 \end{eabstract}
-\ekeywords{NUDT; MND; ME}
+\ekeywords{Bigdata; Image feature extraction; Spark; SIFT algorithm; Load balance}
 
