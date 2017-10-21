@@ -1,4 +1,4 @@
-﻿\chapter{论文正文}
+﻿\chapter{相关原理分析}
 \label{chap:main}
 本章将进入论文排版的正文, 按元素分主要包括：
 {\kai 字体段落，图片表格，公式定理，参考文献}这几部分。
@@ -108,16 +108,16 @@ DVD & RS(208,192,17)码、RS(182,172,11)码 \\
   \centering
   \caption{复杂表格示例 1}
   \label{tab:tabexamp1}
-  \begin{minipage}[t]{0.8\textwidth} 
+  \begin{minipage}[t]{0.8\textwidth}
     \begin{tabularx}{\linewidth}{|l|X|X|X|X|}
       \hline
       \multirow{2}*{\backslashbox{x}{y}}  & \multicolumn{2}{c|}{First Half} & \multicolumn{2}{c|}{Second Half}\\
       \cline{2-5}
-      & 1st Qtr &2nd Qtr&3rd Qtr&4th Qtr \\ 
+      & 1st Qtr &2nd Qtr&3rd Qtr&4th Qtr \\
       \hline
       \multirow{2}*{East$^{*}$} &   20.4&   27.4&   90&     20.4 \\
-       &   30.6 &   38.6 &   34.6 &  31.6 \\ 
-      West$^{**}$ &   30.6 &   38.6 &   34.6 &  31.6 \\ 
+       &   30.6 &   38.6 &   34.6 &  31.6 \\
+      West$^{**}$ &   30.6 &   38.6 &   34.6 &  31.6 \\
       \hline
     \end{tabularx}\\[2pt]
     \footnotesize
@@ -136,7 +136,7 @@ DVD & RS(208,192,17)码、RS(182,172,11)码 \\
 上面那个表格就够用啦。
 
 浮动体的并排放置一般有两种情况：1）二者没有关系，为两个独立的浮动体；2）二者隶属
-于同一个浮动体。对表格来说并排表格既可以像表~\ref{tab:parallel1}、表~\ref{tab:parallel2} 
+于同一个浮动体。对表格来说并排表格既可以像表~\ref{tab:parallel1}、表~\ref{tab:parallel2}
 使用小页环境，也可以如表~\ref{tab:subtable}使用子表格来做。
 图与表同出一源，后面我们将讲解子图(subfloat)的例子。
 \begin{table}[htb]
@@ -198,7 +198,7 @@ DVD & RS(208,192,17)码、RS(182,172,11)码 \\
 \multicolumn{7}{c}{续表~\thetable\hskip1em 实验数据}\\
 
 \toprule[1.5pt]
- 测试程序 & \multicolumn{1}{c}{正常运行} & \multicolumn{1}{c}{同步} 
+ 测试程序 & \multicolumn{1}{c}{正常运行} & \multicolumn{1}{c}{同步}
 & \multicolumn{1}{c}{检查点}   & \multicolumn{1}{c}{卷回恢复}
 & \multicolumn{1}{c}{进程迁移} & \multicolumn{1}{c}{检查点} 	\\
 & \multicolumn{1}{c}{时间 (s)} & \multicolumn{1}{c}{时间 (s)}
@@ -264,7 +264,7 @@ jPicEdt 等等。本人强烈推荐\textsf{Ipe}。
 \end{figure}
 
 若子图共用一个计数器，
-那么请看图~\ref{fig:big1}，它包含两个小图，分别是图~\ref{fig:subfig1} 
+那么请看图~\ref{fig:big1}，它包含两个小图，分别是图~\ref{fig:subfig1}
 和图~\ref{fig:subfig2}。这里推荐使用\verb|\subfloat|，{\bf 不要再用}
 \verb|\subfigure|和\verb|\subtable|。
 \begin{figure}[htb]
@@ -328,16 +328,16 @@ $p(\mathbf{x})$为先验；分母$p(\mathbf{x})$ 为归一化因子，这是
 \begin{equation}
 \label{equ:chap1:bayes}
 p(y|\mathbf{x}) = \frac{p(\mathbf{x},y)}{p(\mathbf{x})}=
-\frac{p(\mathbf{x}|y)p(y)}{p(\mathbf{x})} 
+\frac{p(\mathbf{x}|y)p(y)}{p(\mathbf{x})}
 \end{equation}
 
 论文里面公式越多，\TeX{} 就越 happy。再看一个 \textsf{amsmath} 的例子：
-\newcommand{\envert}[1]{\left\lvert#1\right\rvert} 
+\newcommand{\envert}[1]{\left\lvert#1\right\rvert}
 \begin{equation}\label{detK2}
 \det\mathbf{K}(t=1,t_1,\dots,t_n)=\sum_{I\in\mathbf{n}}(-1)^{\envert{I}}
 \prod_{i\in I}t_i\prod_{j\in I}(D_j+\lambda_jt_j)\det\mathbf{A}
 ^{(\lambda)}(\overline{I}|\overline{I})=0.
-\end{equation} 
+\end{equation}
 
 大家在写公式的时候一定要好好看\textsf{amsmath}的文档，并参考模板中的用法：
 \begin{multline*}%\tag{[b]} % 这个出现在索引中的
@@ -482,11 +482,11 @@ void sort(int arr[], int beg, int end)
 // "Hello World!" on standard output
 
 public class HelloWorld {
- 
+
    public static void main(String[] args) {
       System.out.println("Hello World!");
    }
-      
+
 }   // end of class HelloWorld
 \end{lstlisting}
 
@@ -515,7 +515,7 @@ public class HelloWorld {
 
 \section{符号列表}
 
-{\hei 前面的话：}{\kai\color{blue} 
+{\hei 前面的话：}{\kai\color{blue}
 2.2版本后默认使用nomencl环境，如果你还是希望使用传统的\verb|definition.tex|，那么只需注释掉
 顶层文件中的nomenclature即可。}
 
