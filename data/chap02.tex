@@ -301,14 +301,29 @@ Spark在进行shuffle的过程中，中间结果会写到spark在磁盘的临时
 \subsection{网络传输优化}
 Spark是大数据处理框架，因此集群中数据传输也是影响应用性能的重要因素。如果可以减少数据传输的次数或者是传输的大小，可能会极大的提高应用的性能。下面将分析spark中数据传输优化的场景。
 \subsubsection{大局部变量的传输}
-\subsubsection{Collect结果过大}
-\subsubsection{序列化与压缩}
+默认情况下，算子函数内，如果使用了外部变量，那么会将这个变量的拷贝到执行这个函数的每一个task中，如果这个变量十分大，比如是一个大数组，而且执行的任务又特别多，那么网络的传输耗费就会特别大。下面就是一个例子的展示,其中factor就是一个变量，它在map任务中被使用：
+\begin{lstlisting}[language=Java,numbers=none,frame=none]
+val factor = 3
+rdd.map(num => num*factor)
+\end{lstlisting}
+
+面对这种情况，可以使用Spark的Brodcast（广播）变量对数据传输进行优化，通过Brocast变量将用到的大数据量数据进行广播发送，可以提升整体速度。Broadcast主广播的变量是只读的，并且在每个节点上只会有一份副本，而不会为每个task都拷贝一个副本。因此就减少了变量到各个节点的网络传输消耗，以及在各个节点上的内存消耗。
+\subsubsection{大结果收集}
+在spark的开发中，会经常用到collect操作，collect操作将各个分区的结果收集到一个数组，返回到driver。如图\ref{fig:collect}如果收集的结果过大，就会拖慢应用的执行时间，甚至造成内存溢出。
+\begin{figure}[htp]
+\centering
+\includegraphics{collect}
+\caption{collect操作收集所有分区}
+\label{fig:collect}
+\end{figure}
+面对这种情况，如果收集的结果过大，可以将数据分布式的存储在HDFS或者其他的分布式持久化层上，这样可以减少单机数据的I/O开销和单机内存的存储压力。
+%%\subsubsection{序列化与压缩}
 \section{分布式存储原理}
 
-\section{GPU特征提取和深度学习特征提取原理}
+\section{GPU特征提取原理}
 
 \section{本章小结}
-
+本章分析了本文工作的一些技术原理，首先分析SIFT算法原理，主要针对SIFT算法的5个主要步骤进行分析，分析其数学原理及作用，然后讨论了算法的时间复杂性。接着介绍了作为本文设计的计算引擎Spark,主要涉及了Spark核心技术原理，主要包括Spark的内存编程原理，任务调度原理，性能优化原理。最后介绍了本文设计中作为存储层的分布式文件系统HDFS的一些核心原理。最后，介绍了作为本文设计的比较的GPU特征提取原理。
 \section{表格明细}
 \label{sec:figure}
 表格是论文的重要组成部分，我们从简单的表格讲起，到复杂的表格为止。
