@@ -258,35 +258,17 @@ val fcontext = new BytesWritable(bytes)//将图片的内容转化成byte字节�
 \hline
 函数名  &  功能 \\ %用&来分隔单元格的内容 \\表示进入下一行
 \hline %画一个横线，下面的就都是一样了，这里一共有4行内容
-sequenceFile   & 读取hdfs序列化后的图片\\
+sequenceFile   & 特征读取序列化后的图片，\\
 \hline
-binaryFiles   & 读取hdfs图片库图片\\
+createFImge   & 将BufferedImage类型的图片转换成SpFImage类型\\
 \hline
-saveAsHadoopFile  & 将图片或者是特征点集以序列化方式保存到hdfs\\
+createBufferImage  & 将SpFImage类型图片转换成BufferImage图片\\
 \hline
-FileSystem.get & 获取hdfs文件的句柄\\
-\hline
-FileSystem.delete & 删除hdfs文件\\
+checkSize & 对图片的大小进行检查\\
 \hline
 \hline
 \end{tabular}
 \end{table}
 \subsection{容错模块}
-%%需要做一些工作
 \section{系统执行与验证}
-在这小节中将会介绍整个Spark-SIFT大规模特征提取系统的编译，执行及正确性验证。
-\subsection{spark-imageLib编译}
-本文设计的图像基础库需要嵌入到spark系统中，因此需要和spark的源码一块编译，然后在spark应用开发中，以依赖的形式导入spark-imageLib库支持。本文使用的spark版本是2.0.0，其源代码可以在spark官网或者是github网站下载。spark源码是一个maven工程，maven是一个高级的项目管理工具，可以管理项目中的所有依赖及其他配置。下面简要的介绍一下创建spark-imageLib的步骤：
-\begin{compactenum}
-\item 在spark源码根目录下创建一个新的maven工程，工程的groupId为org.apache.spark，artifactId为spark-imageLib\textunderscore2.11；
-\item 修改spark源码根目录下的pom.xml文件，在modules配置项中加入module值为imageLib的配置项；
-\item 编译源代码，编译命令为mvn clean install，该命令会重新编译spark源码，生成新的spark安装包，我们需要将新的spark安装包安装在集群上；
-\end{compactenum}
-\subsection{特征提取应用程序提交}
-在spark特征提取应用程序中引用spark-imageLib库依赖，编写特征提取程序，编译生成jar包，然后将该jar使用spark的应用程序提交命令将其提交到spark运行集群上。提交命令如下：
-\begin{code}
-spark-submit --class cn.zxm.scala.sparkImageDeal.ImagesFeatureEx 
-\\--master spark://hadoop0:7077 spark-SIFT-1.0.SNAPSHOT.jar
-\end{code}
-\subsection{正确性验证}
 \section{本章小结}

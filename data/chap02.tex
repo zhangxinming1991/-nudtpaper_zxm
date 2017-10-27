@@ -1,4 +1,5 @@
 ﻿\chapter{相关原理分析}
+\label{xiangguanyuanli}
 在本章中，将针对本文涉及的关键技术的原理进行分析和解读，这些关键技术是指导本文工作开展的理论支撑，只有把这些技术原理充分理解后，才能解决设计过程中遇到的难题，才能进行一系列的优化工作。这些技术原理包括，图像表示原理，SIFT算法原理，spark内存技术原理，spark任务调度原理，spark 性能优化原理以及HDFS存储原理。
 \section{图像表示原理}
 数字图像可以理解为对二维函数$f(x,y)$进行采用和量化后得到的图像，因此，通常用二维矩阵来表示一幅数字图像，矩阵中每一个值代表图像中的一个像素。在现实生活中，我们看到的大多数图像都是彩色的，在彩色图片中，每个像素由R,G,B三个分量组成，每个分量的取值为0～255（0表示最暗，255 表示最亮）。但是在图像处理中大多数用的都是灰度图像，灰度图像是R、G、B三个分量灰度值相同的一种特殊图像。处理中使用灰度图像的原因在于它会使后续的处理时的计算量变得相对很少，并且灰度图像对图像特征的描述与彩色图像没有什么区别，RGB只是从光学的原理上对颜色进行了调配。因此灰度图像仍然能反应整个图像的整体和局部的亮度和色度特征。本文的设计工作就是建立在灰度图像之后，我们将原始的图片都进行了灰度化处理，后续的所有处理都在此基础上进行。
@@ -246,9 +247,9 @@ def cache(): this.type = persist()
 \caption{RDD窄依赖和宽依赖对比}
 \label{fig:dependency}
 \end{figure}
-在Spark应用开发中，RDD会经过很多转换操作，每个转换操作都会生成一个新的RDD，这些转换操作最后会形成一个有向图（Directed Acyclic Graph，简称DAG）。这个DAG记录着RDD间的依赖关系，借助这些依赖关系，能保证一个RDD被计算前，所有它所依赖的parent RDD都已经完成了计算。同时Spark 也是整个DAG根据依赖关系的不同划分为不同的阶段(stage)，一个stage中包含的一组并行执行的任务。划分stage的依据是，rdd间是窄依赖关系的划分到一个stage中，rdd间是宽依赖的划分到不同的stage中。一个stage中可以并行执行，不同stage间顺行执行。
+在Spark应用开发中，RDD会经过很多转换操作，每个转换操作都会生成一个新的RDD，这些转换操作最后会形成一个有向图（Directed Acyclic Graph，简称DAG）。这个DAG记录着RDD间的依赖关系，借助这些依赖关系，能保证一个RDD被计算前，所有它所依赖的parent RDD都已经完成了计算。同时Spark 也是整个DAG根据依赖关系的不同划分为不同的阶段(stage)，一个stage中包含的一组并行执行的任务。划分stage的依据是，rdd间是窄依赖关系的划分到一个stage中，rdd间是宽依赖的划分到不同的stage中。一个stage中可以并行执行，不同stage 间顺行执行。
 \subsection{Spark任务调度原理}
-Spark任务调度框架主要由三个模块支撑起，它们分别是DAGScheduler，SchedulerBackend及TaskScheduler。首先DAGScheduler分析用户提交的应用，根据依赖关系建立DAG，然后将DAG划分为不同的Stage，而stage中包含所要执行的tasks。SchedulerBackend负责整个集群交互，收集可用的资源信息，然后将这些信息上报TaskScheduler。TaskScheduler将从SchedulerBackend获取到的资源信息以及从DAGScheduler生成的tasks进行一个资源的分配，将tasks分配的合适的资源上面。整个流程如图\ref{fig:schedulerfw}所示：
+Spark任务调度框架主要由三个模块支撑起，它们分别是DAGScheduler，SchedulerBackend及TaskScheduler。首先DAGScheduler分析用户提交的应用，根据依赖关系建立DAG，然后将DAG 划分为不同的Stage，而stage中包含所要执行的tasks。SchedulerBackend负责整个集群交互，收集可用的资源信息，然后将这些信息上报TaskScheduler。TaskScheduler将从SchedulerBackend获取到的资源信息以及从DAGScheduler生成的tasks进行一个资源的分配，将tasks分配的合适的资源上面。整个流程如图\ref{fig:schedulerfw}所示：
 \begin{figure}[htp]
 \centering
 \includegraphics{schedulerfw}
