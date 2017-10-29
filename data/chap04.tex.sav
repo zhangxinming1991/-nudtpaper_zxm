@@ -87,47 +87,5 @@ public static SequenceImage GetOnePart(byte [][]pixel, int rowStart, int colStar
 \section{shuffle-efficient的特征提取算法}
 在上一节中，本文介绍了分割式特征提取算法，在该算法中，我们将大图片划分为子块，目的是解决Spark-SIFT系统提取过程中出现的负载不均衡问题。虽然分割式解决了处理过程中负载不均衡问题，但是该算法也引入了shuffle操作，shuffle操作是spark处理中十分影响性能的一个操作，因此本小节中将会针对分割式提取算法中的Shuffle操作进行优化，以进一步提高Spark-SIFT系统的处理性能。
 \subsection{Shuffle原理}
-spark在执行map-reduce操作时，需要将处理的数据集分发到各个节点上，在数据被处理完后，再从各个节点上回收结果，这个就是一个具有Shuffle操作的过程。Shuffle操作过程会处在大量的磁盘IO操作和网络传输操作，十分损耗性能。spark中存在两种shuffle机制，分别是hash based shuffle机制和sort based shuffle机制。hash based Shuffle，正如名字所示，该shuffle机制是跟hash值相关的，这个hash值指的是key的hash值，spark会根据key的hash值算出对应的分区，这个分区其实就是下游的一个任务，然后将上游任务的结果写到单独的一个文件，下游的任务拉取相应的结果文件，继续任务的执行，整个过程如图\ref{fig:hash_shuffle} 所示。
-\begin{figure}[htp]
-\centering
-\includegraphics{hash_shuffle}
-\caption{hash based shuffle机制}
-\label{fig:hash_shuffle}
-\end{figure}
-
-从hash based Shuffle的运行过程就可以看出，每个上游的任务都需要给下游的任务创建一个文件，过程产生文件的总数为：tasks(上游)*tasks(下游)，在图\ref{fig:hash_shuffle} 中就创建了4*3个过程文件，如果上游和下游的任务数很多，那么就会有大量的中间文件被创建，而每打开一个文件都会占用内存，这将消耗大量的内存，很容易就造成内存溢出；另外读写大量的文件就会存在大量的磁盘IO操作，这也是十分损耗性能的，并且如果同一个key的结果文件散落在不同的机器的分区上，又会存在网络传输的开销。
-
-针对hash based Shuffle产生大量中间文件的问题，spark中又出现了一个sort based Shuffle机制，在该机制下，每个上游的任务会把结果只写到一个文件中，然后生成一个index，下游的任务根据index的信息，到对应的文件上读取上游结果信息。通过这样方式，就可以大大的减少中间文件的数量，如图\ref{fig:sort_shuffle}所示，该方式下，过程文件仅为4个。
-\begin{figure}[htp]
-\centering
-\includegraphics{sort_shuffle}
-\caption{sort based shuffle机制}
-\label{fig:sort_shuffle}
-\end{figure}
 
 \subsection{高效的分区划分}
-如图所示\ref{fig:seg_shuffle}在分割式算法中是存在两个Shuffle过程的，分别是将图片的子块分配到不同的分区上以及从不同的分区中收集子块特征点集，因为每张图片的子块在被收集之前，它们的key 是不相等的，根据之前分割式算法分析中，它们是用图片的文件名加上子块位于图片的下标组成的。如果按照spark的默认分区策略，spark会按照key的哈希值进行分区，那么同一张图片的子块就有可能会被分配到不同的分区上，也就有可能位于不同的机器上。所以当出现这样情况时，在收集同一张图片的子块时，就需要跨分区和跨机器收集，这显然会影响性能。因此本文提出了一种高效的分区策略，我们对子块进行分区时没有使用Spark的默认分区策略，而是截取了子块key字符串的`\#`之前的字符串，然后算这个字符串的hash值，根据该hash值对总分区数的求余值进行分区。因为同一张图片的子块它们的key字符串中`\#`字符之前的字符串是一样的，那么算出来的hash值也是一样的，所以它们的分区号也是一样的。通过这种分区方式，就可以使得同一张图片的不同子块落在同一分区上，减少了无谓的跨分区收集的网络传输开销。分区划分算法如下所示：
-\begin{algorithm}[htbp]
-  \caption{高效分区策略}
-  \label{algDiveModel}
-  输入：子块key字符串\\
-  输出：子块分区号
-  \begin{algorithmic}[1]
-    \STATE $newKey\leftarrow key.split("\#")$
-    \STATE $code\leftarrow newKey.hashCode\%numPartitions$
-    \IF{$code<0$}
-        \STATE $code\leftarrow code + numPartitions$
-    \ENDIF
-    \STATE Return code
-  \end{algorithmic}
-\end{algorithm}
-
-\begin{figure}[htp]
-\centering
-\includegraphics{seg_shuffle}
-\caption{分割式算法的Shuffle操作}
-\label{fig:seg_shuffle}
-\end{figure}
-
-\section{本章小结}
-本章主要介绍了针对Spark-SIFT系统的三种优化策略。首先是针对大量小文件在spark中加载低效问题，本文设计了一种用key-vaule表示图片的数据结构，将一张图片转化成一条记录，然后将多条记录合并保存，从而提高了Spark加载处理图片的效率；其次，本文针对Spark-SIFT系统在处理图片大小差异较大的数据集时出现的负载不均衡问题，本文提出了分割式特征提取算法，将大图片划分为子块，解决了Spark-SIFT系统的负载不均衡问题同时也提高了系统的并行度；最后，本文针对分割式特征提取算法中引入的Shuffle开销，本文提出了Shuffle-efficient的特征提取算法，使用了高效的分区策略，降低了Shuffle的网络开销。 
