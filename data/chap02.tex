@@ -134,7 +134,7 @@ RDD的基本单元是分区(Partition)，一个RDD由多个分区组成，每个
 \end{figure}
 
 \subsubsection{RDD的操作类型}
-RDD提供的操作可以分为两种类型，分别是transformtion(转换)和action(动作)，表\ref{tab:trans}和表\ref{tab:action}分别列出了常用的转换操作和动作操作。所有的转换操作都是惰性的，被调用时，它们不会直接计算结果，它们只是记住上一个转换动作，当一个动作操作被调用时，这些转换操作才会被执行。这种设计会让Spark运行得更加高效率，因为可能在动作操作时，被操作的数据集会变得比较小。
+RDD提供的操作可以分为两种类型，分别是transformtion(转换)和action(动作)，表\ref{tab:trans}和表\ref{tab:action}分别列出了常用的转换操作和动作操作。所有transformation类型的算子被调用时，Spark不会马上进行算子的执行，Spark会使用一个有向图（DAG）将这些操作记录下来，当一个action算子被调用时，那么在这之前的所有transformation操作全都被执行。这种设计会让Spark 运行得更加高效率，因为可能在动作操作时，被操作的数据集会变得比较小。
 \begin{table}[h] %开始一个表格environment，表格的位置是h,here。
 \caption{RDD转换操作} %显示表格的标题
 \centering
@@ -144,11 +144,11 @@ RDD提供的操作可以分为两种类型，分别是transformtion(转换)和ac
 \hline
 转换  & 含义 \\ %用&来分隔单元格的内容 \\表示进入下一行
 \hline %画一个横线，下面的就都是一样了，这里一共有4行内容
-map(func)  & 返回一个新的分布式的数据集，该数据集有每一个输入元素经过func函数转换后组成\\
+map(func)  & 对所有分区上的数据都执行func操作\\
 \hline
-filter(func)  & 返回一个新的数据集，该数据集经过func函数计算后返回值为true的输入元素组成\\
+filter(func)  & 具有数据过滤的功能，对所有分区上的数据使用func条件进行过滤\\
 \hline
-flatMap(func)  & 类似于Map，但是每一个输入元素可以被映射为0个或者是多个输出元素\\
+flatMap(func)  & 这个函数和map是具有同样功能，区别在于它处理完后会将结果变成一个一维数组\\
 \hline
 mapPartitions(func) & 类型于map,但是独立在RDD的每一个分片上运行，因此func的类型必须是Iterator[T]=>Iterator[U]\\
 \hline
@@ -156,9 +156,7 @@ mapPartitionWithSplit(func) & 类似于mapPartitions，但是func带有一个整
 \hline
 sample(withReplacement,fraction,seed) & 根据fraction指定比例对数据进行采用\\
 \hline
-union(otherDataset) & 返回一个新的数据集，新数据集是由源数据集和参数数据集联合而成的\\
-\hline
-distinct(numTasks) & 返回一个包含源数据集中所有不重复的元素的新的数据集\\
+distinct(numTasks) &对分区上的数据进行去重操作\\
 \hline
 \hline
 \end{tabular}
@@ -175,32 +173,28 @@ distinct(numTasks) & 返回一个包含源数据集中所有不重复的元素�
 \hline %画一个横线，下面的就都是一样了，这里一共有4行内容
 reduce(func)  & 通过函数func聚集数据集中的所有元素\\
 \hline
-collect()  & 在驱动程序中，以数组的形式返回数据集中的所有元素。通常在使用filter或者其他操作返回一个足够小的数据子集后再使用比较有用\\
+collect()  & 将所有的分区的运算结果收集到Driver上\\
 \hline
 count()  & 返回数据集的个数\\
 \hline
 first() & 返回数据集的第一个元素\\
 \hline
-take(n) & 返回一个由数据集的前n个元素组成的数组\\
+take(n) & 这个算法和collect有所区别，collect是返回所有结果，take是返回前n个结果\\
 \hline
-takeSample(withReplacement,num,seed) & 返回一个数组，该数组由从数据集中随机采用的num个元素组成\\
+takeSample(withReplacement,num,seed) & 在所有分区的数据上进行采用\\
 \hline
-saveAsTextFile(path) & 将数据集的元素以textFile的形式保存到本地文件系统，HDFS或者任何Hadoop支持的文件系统\\
+saveAsTextFile(path) & 将运算结果以文本的方式保存到HDFS中\\
 \hline
-saveAsSequenceFile(path) & 将数据集的元素以Hadoop sequencefile的格式保存到指定目录下，可以是本地系统，HDFS或者任何Hadoop支持的文件系统\\
+saveAsSequenceFile(path) & 将运算结果以序列化的方式保存到HDFS中\\
 \hline
-countByKey() & 对（K,V）类型的RDD有效，返回一个（K,Int）对的map，表示每一个key的元素个数\\
-\hline
-foreach(func) & 在数据集的每一个元素上，运行函数func进行更新\\
+countByKey() 根据key信息统计记录的条数\\
 \hline
 \hline
 \end{tabular}
 \end{table}
 
 \subsubsection{RDD的缓存原理}
-spark速度非常快的原因之一，就是在不同操作中内存中持久化（或缓存）一个数据集。当持久化一个RDD后，每一个节点都将会把计算分片的结果保存在内存中，后续的其他操作可以直接使用该结果，这就使得后续的动作变得十分迅速。
-
-通过persist()或cache()方法可以标识一个要被持久化的RDD，一旦首次被触发后，该RDD将会被保留在计算节点的内存中并重用。persist()和cache()的实现如下：
+RDD的特点在于它是一个内存数据结构，所有对它的操作是在内存中完成的，这也是为什么Spark在迭代次数多的任务中计算的速率要远快于Hadoop。在Spark中，某个数据集会被后续操作使得到，或者是整体使用的频率十分高，这时候就可以将其缓存到内存中，即持久化一个数据集在内存中。具体可以通过persist()或cache()方法可以标识一个要被持久化的RDD。persist()和cache()的实现如下：
 \begin{lstlisting}[language=Java,numbers=none,frame=none]
 /**Persist this RDD with the default storage level('MEMORY_ONLY').*/
 def persist(): this.type = persist(StorageLevel.MEMORY_ONLY)
@@ -220,8 +214,8 @@ def cache(): this.type = persist()
 \subsubsection{RDD的依赖关系和DAG的生成}
 一个Spark应用中，不同的RDD间存在依赖关系，依赖关系分为窄依赖(narrow dependency)和宽依赖(wide dependency)，窄依赖和宽依赖的定义如下：
 \begin{itemize}
-\item 窄依赖，窄依赖是指父RDD的每个分区只被子RDD的一个分区所使用，如图\ref{fig:dependency}左边部分显示
-\item 宽依赖，宽依赖是指父RDD的每个分区都可能被多个子RDD分区所使用，如图\ref{fig:dependency}右边部分显示
+\item 窄依赖，窄依赖是指父RDD的分区结果和子分区使用是一个1对1的关系，如图\ref{fig:dependency}左边部分显示
+\item 宽依赖，宽依赖是指父RDD的分区结果和子分区使用是一个多对1的关系，如图\ref{fig:dependency}右边部分显示
 \end{itemize}
 \begin{figure}[htp]
 \centering
@@ -229,7 +223,7 @@ def cache(): this.type = persist()
 \caption{RDD窄依赖和宽依赖对比}
 \label{fig:dependency}
 \end{figure}
-在Spark应用开发中，RDD会经过很多转换操作，每个转换操作都会生成一个新的RDD，这些转换操作最后会形成一个有向图（Directed Acyclic Graph，简称DAG）。这个DAG记录着RDD间的依赖关系，借助这些依赖关系，能保证一个RDD被计算前，所有它所依赖的parent RDD都已经完成了计算。同时Spark 也是整个DAG根据依赖关系的不同划分为不同的阶段(stage)，一个stage中包含的一组并行执行的任务。划分stage的依据是，rdd间是窄依赖关系的划分到一个stage中，rdd间是宽依赖的划分到不同的stage中。一个stage中可以并行执行，不同stage 间顺行执行。
+在Spark应用开发中，RDD会经过很多转换操作，每个转换操作都会生成一个新的RDD，这些转换操作最后会形成一个有向图（Directed Acyclic Graph，简称DAG）。这个DAG记录着RDD间的依赖关系，借助这些依赖关系，能保证一个RDD被计算前，所有它所依赖的parent RDD都已经完成了计算。Spark会根据DAG对算子进行stage的划分，划分的依据是，rdd间是窄依赖关系的划分到一个stage中，rdd间是宽依赖的划分到不同的stage 中。一个stage 中的task可以并行执行，不同stage的task则要顺行执行。
 \subsection{Spark任务调度原理}
 Spark任务调度框架主要由三个模块支撑起，它们分别是DAGScheduler，SchedulerBackend及TaskScheduler。首先DAGScheduler分析用户提交的应用，根据依赖关系建立DAG，然后将DAG 划分为不同的Stage，而stage中包含所要执行的tasks。SchedulerBackend负责整个集群交互，收集可用的资源信息，然后将这些信息上报TaskScheduler。TaskScheduler将从SchedulerBackend获取到的资源信息以及从DAGScheduler生成的tasks进行一个资源的分配，将tasks分配的合适的资源上面。整个流程如图\ref{fig:schedulerfw}所示：
 \begin{figure}[htp]
@@ -239,28 +233,20 @@ Spark任务调度框架主要由三个模块支撑起，它们分别是DAGSchedu
 \label{fig:schedulerfw}
 \end{figure}
 \subsubsection{DAGScheduler}
-DAGScheduler面向stage的调度(stage-oriented scheduling)的高级调度器，将job根据类型划分为不同的stage(划分的依据是依赖关系为窄依赖的属于一个stage，依赖关系为宽依赖的RDD属于不同的stage)为每个job 的不同stage 计算DAG，跟踪哪些RDD和stage被物化并且发现运行job的最小的调度策略，然后并在每一个stage 内产生一系列的task 并封装为taskset, 结合当前的缓存情况来决定每个Task的最佳位置(任务在数据所在的节点上运行)，以taskset 为单位提交(submitTasks) 给TaskScheduler。
+DAGScheduler的功能是对应用程序提交的task根据依赖关系进行stage的划分，将窄依赖关系的task划分到一个stage中，然后将task一个集合的形式进行打包，形成taskset，再将taskset传递给TaskScheduler。
 \subsubsection{SchedulerBackend}
-SchedulerBackend负责与Cluster Manager交互，取得该Application分配到的资源，并且将这些资源传给TaskScheduler，由TaskScheduler为Task最终分配计算资源。在不同的集群模式下，SchedulerBackend的实现是不一样的，实现可以分为细粒度和粗粒度两种。分为细粒度和粗粒度两种。细粒度只有Mesos(mesos有粗细两种粒度的使用方式)实现了，粗粒度的实现者有yarn，mesos，standalone。拿standalone模式来说粗粒度，每台物理机器是一个worker，worker一共可以使用多少cpu和内存，启动时候可以指定每个worker起几个executor，即进程，每个executor的cpu和内存是多少。粗粒度与细粒度的主要区别，就是粗粒度是进程long-running 的，计算线程可以调到executor上跑，但executor的cpu和内存更容易浪费。细粒度的话，可以存在复用，可以实现抢占等等更加苛刻但促进资源利用率的事情。这俩概念还是AMPLab论文里最先提出来并在Mesos里实现的。AMPLab在资源使用粒度甚至任务分配最优的这块领域有不少论文，包括Mesos的DRF算法、Sparrow调度器等。所以standalone模式下，根据RDD的partition数，以及每个task需要的cpu 数，可以很容易计算每台物理机器的负载量、资源的消耗情况、甚至知道TaskSet要分几批才能跑完一个stage。
+SchedulerBackend负责和整个集群打交道，收集集群的资源信息，并且将这些信息上报给TaskScheduler。SchedulerBackend中有两种调度方式，分别是粗粒度和细粒度两种，运行时具体是哪一种取决于集群的运行模式。粗粒度下，tasks是按照Executor进行分配的，而在细粒度下，task是按照线程进行分配的。
 \subsubsection{TaskScheduler}
-TaskScheduler负责Application的不同Job间的调度，在Task执行失败时启动重试机制。TaskScheduler里会对已经提交的tasks进行一次优先级排序，这个排序策略目前有两种：FIFO(First In First Out,先进先出)或FAIR(公平调度)，默认调度策略是FIFO。通过排序，会得到一份待运行的tasks，然后就把从schedulerBackend交过来的worker资源信息合理分配给这些tasks。分配前，为了避免每次都是前几个worker被分到tasks，所以先对WorkerOffer列表进行一次随机洗牌。接下来就是遍历tasks，看workers的资源“够不够”，“符不符合”task，如果符合的话task就被正式launch起来。
+TaskScheduler的任务是负责将从DAGScheduler传递上来的Tasks分配到合适的工作节点上面，对于Taks的分配策略有两种，分别是FIFO(先进先出)以及FIFA(公平调度)。TaskScheduler中存在两个列表，一个是可以被launch的tasks列表，另外的是可以被use的worker列表，TaskScheduler如同一个管家，按照列表的顺序，吩咐相应worker去处理相应的tasks。但是如果一直按照这种方式，可能是某个worker或者是某几个worker会经常处于忙碌状态（因为他们都比其他work的计算能力强，一直在"抢"任务），而大部分worker一直处理闲状态。所以为了避免这种情况，TaskScheduler会对Worker进行shuffle操作，任意挑选worker放在worker列表的前面。
+
 \subsection{Spark性能优化原理}
 在本小节中，将介绍Spark的性能优化原理，因为Spark是处理大数据的框架，因此性能优化是非常有必要的。接下来将从几个方面分析spark的性能问题
 \subsubsection{调度和分区优化}
-在spark应用程序中，会经常使用fiter算子进行数据过滤，而频繁的过滤或者过滤的数据量过大就会造成大量小分区，由于spark是每个数据分区都会分配一个任务执行，如果任务过多，就会造成线程切换开销很大，很多任务等待执行，并行度实际上不高。面对这种情况，我们可以采用RDD中的重分区函数进行数据的紧缩，减少分区数，将小分区合并成大分区。具体可以通过coalesce函数进行，函数定义如下：
-\begin{lstlisting}[language=Java,numbers=none,frame=none]
-def coalesce(numPartitions: Int, shuffle: Boolean = false)(implicit ord: Ordering[T] = null): RDD[T]
-\end{lstlisting}
+在Spark中，一个分区是对应着一个task的，即一个分区是一个并行的单元，那么是不是分区的数量越多，一个Spark应用就会运行的越快呢？其实并不是这样，不是分区数越多，运行的速度的越快，因为当分区数量十分大时，task的调用开销也会变得很大，有可能出现tasks的调度时间比任务运行的总时间还要长。所以，在制定分区数量时要综合考虑集群系统的资源和被处理作业的数据量。
 
-该函数会返回一个含有numPartitions数量个分区的新的RDD，即将整个RDD重分区。
-
-使用这个函数会出现一个问题，比如将1000个分区的RDD重分区为一个分区，就会造成数据过于集中，完成无法开掘集群并行计算的能力。在这种情况下，可以将coalsesce 函数参数shuffle 设置为true，由于shuffle 可以分隔shuffle，这就保证了上游的任务仍是1000个，否则两个上下游的任务合并为一个stage 计算，这个stage就会在一个分区上进行并行计算。
-
-除了将分区收缩，在某些情况下，可能会对原来的分区进行扩充，将分区数量增加，以利用并行计算能力。在这个过程中，默认使用的是Hash分区器进行重分区。
-
-在分区优化问题中，还有一个倾斜(skew)的问题。倾斜是一个大数据处理中一个非常重要的问题，可以分为数据倾斜和任务倾斜，数据倾斜的结果就会造成任务倾斜，在个别分区上，任务的执行时间过长。
+在分区优化问题中，还有一个倾斜(skew)的问题。倾斜可以分为数据倾斜和任务倾斜，两者存在关系，数据倾斜会引发任务倾斜。
 \begin{compactenum}
-\item 数据倾斜\\产生数据倾斜的原因大致有这几种：
+\item 数据倾斜\\数据倾斜是指数据被划分的不均匀，一个task被分配了很多的处理数据，有可能比所有task分配的还要多，在这种情况下就会导致负载的不均衡，下面是一些常见的引发Spark在出现数据倾斜的原因：
 \begin{itemize}
 \item key数据分布不均匀，因为spark中默认是按照Hash方式进行分区，如果某个key的数据特别多，就会造成分到某个key上的数据特别多，最后造成某个分区的数据特别多，也就出现了数据倾斜。
 \item 结构化数据表设计问题
@@ -282,13 +268,13 @@ Spark在进行shuffle的过程中，中间结果会写到spark在磁盘的临时
 \subsubsection{网络传输优化}
 Spark是大数据处理框架，因此集群中数据传输也是影响应用性能的重要因素。如果可以减少数据传输的次数或者是传输的大小，可能会极大的提高应用的性能。下面将分析spark中数据传输优化的场景。
 \begin{compactenum}
-\item 大局部变量的传输\\默认情况下，算子函数内，如果使用了外部变量，那么会将这个变量的拷贝到执行这个函数的每一个task中，如果这个变量十分大，比如是一个大数组，而且执行的任务又特别多，那么网络的传输耗费就会特别大。下面就是一个例子的展示,其中factor就是一个变量，它在map任务中被使用：
+\item 大局部变量的传输\\在spark的分布式处理算子中，如果使用了不是算子内部的变量，那么Spark会为每个task生成一个这样的变量，那么如果这个变量十分大，比如是一个大数组，而且执行的任务又特别多，那么网络的传输耗费就会特别大。下面就是一个例子的展示,其中factor 就是一个变量，它在map 任务中被使用：
 \begin{lstlisting}[language=Java,numbers=none,frame=none]
 val factor = 3
 rdd.map(num => num*factor)
 \end{lstlisting}
 
-面对这种情况，可以使用Spark的Brodcast（广播）变量对数据传输进行优化，通过Brocast变量将用到的大数据量数据进行广播发送，可以提升整体速度。Broadcast主广播的变量是只读的，并且在每个节点上只会有一份副本，而不会为每个task都拷贝一个副本。因此就减少了变量到各个节点的网络传输消耗，以及在各个节点上的内存消耗。
+面对这种情况，我们可以采用Spark中Broadcast或者是共享变量这两种方式来解决大外部变量传输的问题，通过这两种方式，Spark只会为Worker生成需要的外部变量，而不是为每个task生成一个外部变量，减少了局部变量的传输开销。
 \item 大结果收集\\在spark的开发中，会经常用到collect操作，collect操作将各个分区的结果收集到一个数组，返回到driver。如图\ref{fig:collect}如果收集的结果过大，就会拖慢应用的执行时间，甚至造成内存溢出。
 \begin{figure}[htp]
 \centering
@@ -300,10 +286,10 @@ rdd.map(num => num*factor)
 %%\subsubsection{序列化与压缩}
 \end{compactenum}
 \section{分布式存储原理}
-在大数据处理场景下，需要的处理的数据集往往是很大的，比如100T，那么使用单节点的存储方案是基本不可能的，无论是数据的存储空间或者是数据的安全方面，单节点是无法适用需求的。因此，需要一种分布式的存储方案来应对大数据的场景下的数据存储，HDFS分布式文件是根据google的三大论文中的The google fileSystem文章开发出来的。HDFS是一个Master-Slave的架构，里面有Namenode，DataNode及SecondaryNameNode三种角色，NameNode负责管理数据的元数据信息，DataNode负责数据的data数据的保存，SecondaryNameNode负责数据的备份。HDFS是按照Block为单位进行数据存储的，在HDFS中一个Block的大小通常为64M，从这里就可以看出HDFS中的Block的大小比我们Linxu的文件系统的Block要大很多，这也是为了在大数据处理场景下提高数据的读写效率。在写入数据的时候，如果被写入文件如果大于64M，HDFS会进行数据的划分，按照块的大小进行划分，那么一个文件就可能被划分为几个块，进行分布式存储。同样在读取数据的时，客户端将文件名和字节的偏移发送给NameNode，NameNode根据字节偏移量转化成Block偏移，然后将给偏移量返回客户端，客户端根据该偏移量信息到DataNode上进行数据的读取，后续的操作也不需要经过NameNode。
+在大数据处理场景下，需要的处理的数据集往往是很大的，比如100T，那么使用单节点的存储方案是基本不可能的，无论是数据的存储空间或者是数据的安全方面，单节点是无法适用需求的。因此，需要一种集群式的的存储方案来应对大数据的场景下的数据保存，HDFS分布式文件是根据google的三大论文中的The google fileSystem文章开发出来的。HDFS是一个Master-Slave的架构，里面有Namenode，DataNode及SecondaryNameNode三种角色，NameNode负责管理数据的元数据信息，DataNode负责数据的data数据的保存，SecondaryNameNode负责数据的备份。HDFS是按照Block为单位进行数据存储的，在HDFS中一个Block的大小通常为64M，从这里就可以看出HDFS 中的Block的大小比我们Linxu的文件系统的Block要大很多，这也是为了在大数据场景下提升数据的读写效率。在写入数据的时候，如果被写入文件如果大于64M，HDFS会进行数据的划分，按照块的大小进行划分，那么一个文件就可能被划分为几个块，进行分布式存储。同样在读取数据的时，hdfs客户端将文件名以及字节的偏移发送给NameNode，NameNode根据字节偏移量转化成Block偏移，然后将给偏移量返回客户端，客户端根据该偏移量信息到DataNode上进行数据的读取，后续的操作也不需要经过NameNode。
 \section{GPU特征提取原理}
-因为在实验数据比较上，我们和GPU下的特征提取进行了比较，因此，在这小节中的介绍GPU的相关原理。GPU最开始的时候是应用在图像显示领域的，作为显卡使用，后面因为其出色的并行加速能力，逐渐应用于科学计算，机器学习及深度学习的领域中。我们通过是将CPU上相关需要加速的算法改写成GPU 版本，是程序中可以并行部分，在GPU上以多线程的方式并行执行，大大缩短了程序的执行时间。GPU之所以能够比CPU拥有如此大的并行加速能力，原因在GPU上的计算单元远远多于CPU上的计算单元，GPU上的计算单元可以划分为三个维度，分别设计Grids，Blocks以及Threads，大量的Threads组成一个Block，然后大量的Blocks组成一个Grids，最后由大量的Grids组成强大的计算能力。
+因为在实验数据比较上，我们和GPU下的特征提取进行了比较，因此，在这小节中的介绍GPU的相关原理。GPU最开始的时候是应用在图像显示领域的，作为显卡使用，后面因为其出色的并行加速能力，逐渐应用于科学计算，机器学习及深度学习的领域中。我们通过是将CPU上相关需要加速的算法改写成GPU 版本，是程序中可以并行的代码区域，在GPU上以多线程方式并行执行，大大提升了程序的运行时间。GPU之所以能够比CPU拥有如此大的并行加速能力，原因在GPU上的计算单元远远多于CPU上的计算单元，GPU上的计算单元可以划分为三个维度，分别设计Grids，Blocks以及Threads，大量的Threads组成一个Block，然后大量的Blocks组成一个Grids，最后由大量的Grids组成强大的计算能力。
 \section{本章小结}
-本章分析了本文工作的一些技术原理，首先分析SIFT算法原理，主要针对SIFT算法的5个主要步骤进行分析，分析其数学原理及作用，然后讨论了算法的时间复杂性。接着介绍了作为本文设计的计算引擎Spark,主要涉及了Spark核心技术原理，主要包括Spark的内存编程原理，任务调度原理，性能优化原理。最后介绍了本文设计中作为存储层的分布式文件系统HDFS的一些核心原理。最后，介绍了作为本文设计的比较的GPU特征提取原理。
+本章分析了本文工作的一些技术原理，首先分析SIFT算法原理，主要针对SIFT算法的5个主要步骤进行分析，分析5个步骤的数学原理及在SIFT算法中的作用，然后讨论了SIFT算法的中最为耗时的步骤。在介绍完SIFT算法原理之后，本章节对Spark-SIFT的大数据模块进行原理分析，首先分析了park-SIFT的计算引擎Spark 主要分析Spark核心技术原理，包括Spark的内存编程原理，任务调度原理，性能优化原理。接着又分析了了充当Spark-SIFT 系统存储层的HDFS 文件系统的一些核心原理。最后，介绍了作为本文设计工作对比的GPU特征提取的一些基本原理。
 
 
