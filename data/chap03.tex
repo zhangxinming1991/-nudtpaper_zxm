@@ -9,7 +9,7 @@
 \caption{大规模图像库特征提取系统Spark-SIFT系统框架}
 \label{fig:spark_sift_fw}
 \end{figure}
-图像库进行特征提取前，先经过序列化处理模块进行序列化处理，经过序列化模块之后，一张图片转化单条记录的形式，最后所有的记录序列化保存到分布式文件系统HDFS中。当进行特征提取时，特征提取功能模块读取HDFS中序列化图片记录，将其分发到各个任务上，任务运行在整个集群上，每个任务上通过Spark-SIFT算法进行特征提取，完成特征提取后，每个task 直接将提取出来的特征保存到HDFS中。系统中的异常监控模块收集系统运行过程中出现的异常信息，将异常信息写到特定的异常日志中。
+图像库进行特征提取前，先经过序列化处理模块进行序列化处理，经过序列化模块之后，一张图片转化单条记录的形式，最后所有的记录序列化保存到分布式文件系统HDFS 中。当进行特征提取时，特征提取功能模块读取HDFS中序列化图片记录，将其分发到各个任务上，任务运行在整个集群上，每个任务上通过Spark-SIFT算法进行特征提取，完成特征提取后，每个task 直接将提取出来的特征保存到HDFS中。系统中的异常监控模块收集系统运行过程中出现的异常信息，将异常信息写到特定的异常日志中。
 
 从软件架构的角度看整个系统，系统的框架图如图\ref{fig:spsift_core_fw}所示：
 \begin{figure}[htp]
@@ -31,7 +31,7 @@ spark-imageLib图像处理库主要包括图像的表示，图像的读取，特
 \caption{Spark下图像表示}
 \label{fig:image_represent}
 \end{figure}
-SpImage为最基础的为抽象类，不会直接被使用。SpSingleBandImage为SpImage的子类，它也为抽象类，SpSingleBandImage表示单通道类型的图像。SpFImage类为SpSingleBandImage的子类，也是本文中实际用来在Spark下表示图像的类。这三个类都有一个共同的属性变量，就是serialVersionUID，因为本文是一个分布式的图像处理框架，必然会设计到图像的网络传输，因此表示图像的类必须是序列化的。这里的序列化采用的java的序列化方式，因为序列化必然会存在一个反序列化的过程，比如从Master将图像序列化传送的Worker上，然后Worker 将接受到的内容反序列化得到原始图像，为了避免两端实体类的版本不一样，就使用了serialVersionUID来验证版本的一致性。当JVM获取传来的字节流时，先读取serialVersionUID，然后和本地的进行比较，如果一致，则可以反序列化，否则不允许序列化操作。
+SpImage为最基础的为抽象类，不会直接被使用。SpSingleBandImage为SpImage的子类，它也为抽象类，SpSingleBandImage表示单通道类型的图像。SpFImage类为SpSingleBandImage的子类，也是本文中实际用来在Spark下表示图像的类。这三个类都有一个共同的属性变量，就是serialVersionUID，因为本文是一个分布式的图像处理框架，必然会设计到图像的网络传输，因此表示图像的类必须是序列化的。这里的序列化采用的java的序列化方式，因为序列化必然会存在一个反序列化的过程，比如从Master 将图像序列化传送的Worker上，然后Worker 将接受到的内容反序列化得到原始图像，为了避免两端实体类的版本不一样，就使用了serialVersionUID来验证版本的一致性。当JVM获取传来的字节流时，先读取serialVersionUID，然后和本地的进行比较，如果一致，则可以反序列化，否则不允许序列化操作。
 
 考虑传输过程中的耗费代价，因此设计SpFImage数据结构时要十分精简，在成员变量中，只设置了一个二维数组pixels，这个数组就是保存整张图片的像素信息。因为考虑到高斯模糊时候的精度问题，所以pixels采用了float类型。SpFImage的构造函数是比较灵活的，它允许传递一维数组或者是二维数组，数组的类型是byte或者float，对于不同的参数类型，本文都会自动进行转换。
 
@@ -164,7 +164,7 @@ sc.objectFile(initImgs_500k_path_hdfs).map(x => {
 虽然objectFile读取图像十分方便，但是如果直接将对象保存到HDFS中，储存空间相当大，存储的时间也十分长。
 \subsubsection{特征点表示}
 %%加上序列化的内容，Hadoop下怎样序列化
-在本文设计中，特征点的表示只要涉及到三个模块，分别是SpKeypoint，SpMemoryLocalFeatureList，SpLocalFeatureList。SpKeypoint表示一个sift特征点，SpMemoryLocalFeatureList保存整张图片的sift特征点，SpLocalFeatureList为接口，SpMemoryLocalFeatureList是SpLocalFeatureList的具体实现。SpKeypoint成员结构如图\ref{fig:spkeypoint}所示：
+在本文设计中，特征点的表示只要涉及到三个模块，分别是SpKeypoint，SpMemoryLocalFeatureList，SpLocalFeatureList。SpKeypoint表示一个sift特征点，SpMemoryLocalFeatureList保存整张图片的sift 特征点，SpLocalFeatureList为接口，SpMemoryLocalFeatureList是SpLocalFeatureList的具体实现。SpKeypoint成员结构如图\ref{fig:spkeypoint}所示：
 \begin{figure}[htp]
 \centering
 \includegraphics{spkeypoint}
@@ -272,11 +272,20 @@ FileSystem.delete & 删除hdfs文件\\
 \end{tabular}
 \end{table}
 \subsection{容错模块}
+在大数据处理中，系统的容错是一个十分重要的功能，因为处理的数据量太大，处理的时间太长，因此处理过程中发生一些错误是十分常见的情况，比如有可能处理的数据中有几个非法的数据，在Spark-SIFT系统处理过程中，我们经常就会碰到图片集合中有几张非法格式的图片。但是系统不能因为这个非法格式的数据而处理被中断或者是崩溃，因此大数据系统中应该有一套自己的容错机制。在Spark-SIFT中，系统中有一个模块会对图片格式的合法性进行判断，找出所有非法格式的图片，然后将这些文件名连同路径写到HDFS中非法文件保存目录下，系统会定期读取该目录，进行非法格式图片的删除。
+
+在Spark中如果应用运行的过程出现了运行时的异常，应用会直接退出。因此针对这种情况，在Spark-SIFT系统进行特征提取时，我们对特征提取应用的每一个stage都加入了过滤功能，将一些非法的结果过滤掉，只传送合法的结果到下一个stage，这样系统就不会因为发生异常而直接退出。具体实现时，本文是采用了Scala中的Try异常捕捉机制，当采用这种异常捕捉机制时，结果的返回一个重新封装的数据结构，该数据结构包含正确和异常的两个结果，换而言之，什么类型的结果都会返回，具体需要什么，我们可以根据条件进行过滤删选。图\ref{fig:try_stage}显示了Spark-SIFT系统在一个stage结束之后的容错处理操作。
+\begin{figure}[htp]
+\centering
+\includegraphics{try_stage}
+\caption{stage和stage间的容错处理}
+\label{fig:try_stage}
+\end{figure}
 %%需要做一些工作
 \section{系统执行与验证}
 在这小节中将会介绍整个Spark-SIFT大规模特征提取系统的编译，执行及正确性验证。
 \subsection{spark-imageLib编译}
-本文设计的图像基础库需要嵌入到spark系统中，因此需要和spark的源码一块编译，然后在spark应用开发中，以依赖的形式导入spark-imageLib库支持。本文使用的spark版本是2.0.0，其源代码可以在spark官网或者是github网站下载。spark源码是一个maven工程，maven是一个高级的项目管理工具，可以管理项目中的所有依赖及其他配置。下面简要的介绍一下创建spark-imageLib的步骤：
+本文设计的图像基础库需要嵌入到spark系统中，因此需要和spark的源码一块编译，然后在spark应用开发中，以依赖的形式导入spark-imageLib库支持。本文使用的spark版本是2.0.0，其源代码可以在spark 官网或者是github网站下载。spark源码是一个maven工程，maven是一个高级的项目管理工具，可以管理项目中的所有依赖及其他配置。下面简要的介绍一下创建spark-imageLib的步骤：
 \begin{compactenum}
 \item 在spark源码根目录下创建一个新的maven工程，工程的groupId为org.apache.spark，artifactId为spark-imageLib\textunderscore2.11；
 \item 修改spark源码根目录下的pom.xml文件，在modules配置项中加入module值为imageLib的配置项；

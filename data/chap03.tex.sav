@@ -9,7 +9,7 @@
 \caption{大规模图像库特征提取系统Spark-SIFT系统框架}
 \label{fig:spark_sift_fw}
 \end{figure}
-图像库进行特征提取前，先经过序列化处理模块进行序列化处理，经过序列化模块之后，一张图片转化单条记录的形式，最后所有的记录序列化保存到分布式文件系统HDFS中。当进行特征提取时，特征提取功能模块读取HDFS中序列化图片记录，将其分发到各个任务上，任务运行在整个集群上，每个任务上通过Spark-SIFT算法进行特征提取，完成特征提取后，每个task 直接将提取出来的特征保存到HDFS中。系统中的异常监控模块收集系统运行过程中出现的异常信息，将异常信息写到特定的异常日志中。
+图像库进行特征提取前，先经过序列化处理模块进行序列化处理，经过序列化模块之后，一张图片转化单条记录的形式，最后所有的记录序列化保存到分布式文件系统HDFS 中。当进行特征提取时，特征提取功能模块读取HDFS中序列化图片记录，将其分发到各个任务上，任务运行在整个集群上，每个任务上通过Spark-SIFT算法进行特征提取，完成特征提取后，每个task 直接将提取出来的特征保存到HDFS中。系统中的异常监控模块收集系统运行过程中出现的异常信息，将异常信息写到特定的异常日志中。
 
 从软件架构的角度看整个系统，系统的框架图如图\ref{fig:spsift_core_fw}所示：
 \begin{figure}[htp]
@@ -20,7 +20,7 @@
 \end{figure}
 本文的主要工作在于Spark的库层和应用层。本文实现了Spark下的图像处理基础库Spark-imageLib，这个库包含了spark的图像的表示，读取操作及一些基础的图像处理接口，比如图像的灰度化，图像的缩放，图像的模糊等；这个库和spark的其他库，比如分布式图计算处理库GraphX，机器学习库MLib的地位是等价的，我们已经将该库嵌入到spark的生态系统中。此在这个库的基础上，开发了Spark-SIFT 算法，该算法在Spark 应用中被调用，实现分布式的特征提取工作，图中的spSift 就是特征提取应用，它位于spark 的应用层。
 \section{系统模块设计}
-在本小节中，会详细介绍每个模块的设计及实现，它们分别是spark图像基础库spark-imageLib，spark-sift算法，序列化模块，存储模块设，系统容错模块以系统的可扩展性。
+在本小节中，会详细介绍每个模块的设计及实现，它们分别是spark图像基础库spark-imageLib，spark-sift算法，序列化模块，存储模块以及系统容错模块。
 \subsection{spark图像基础库spark-imageLib}
 spark-imageLib图像处理库主要包括图像的表示，图像的读取，特征点的表示。
 \subsubsection{图像表示}
@@ -31,7 +31,7 @@ spark-imageLib图像处理库主要包括图像的表示，图像的读取，特
 \caption{Spark下图像表示}
 \label{fig:image_represent}
 \end{figure}
-SpImage为最基础的为抽象类，不会直接被使用。SpSingleBandImage为SpImage的子类，它也为抽象类，SpSingleBandImage表示单通道类型的图像。SpFImage类为SpSingleBandImage的子类，也是本文中实际用来在Spark下表示图像的类。这三个类都有一个共同的属性变量，就是serialVersionUID，因为本文是一个分布式的图像处理框架，必然会设计到图像的网络传输，因此表示图像的类必须是序列化的。这里的序列化采用的java的序列化方式，因为序列化必然会存在一个反序列化的过程，比如从Master将图像序列化传送的Worker上，然后Worker 将接受到的内容反序列化得到原始图像，为了避免两端实体类的版本不一样，就使用了serialVersionUID来验证版本的一致性。当JVM获取传来的字节流时，先读取serialVersionUID，然后和本地的进行比较，如果一致，则可以反序列化，否则不允许序列化操作。
+SpImage为最基础的为抽象类，不会直接被使用。SpSingleBandImage为SpImage的子类，它也为抽象类，SpSingleBandImage表示单通道类型的图像。SpFImage类为SpSingleBandImage的子类，也是本文中实际用来在Spark下表示图像的类。这三个类都有一个共同的属性变量，就是serialVersionUID，因为本文是一个分布式的图像处理框架，必然会设计到图像的网络传输，因此表示图像的类必须是序列化的。这里的序列化采用的java的序列化方式，因为序列化必然会存在一个反序列化的过程，比如从Master 将图像序列化传送的Worker上，然后Worker 将接受到的内容反序列化得到原始图像，为了避免两端实体类的版本不一样，就使用了serialVersionUID来验证版本的一致性。当JVM获取传来的字节流时，先读取serialVersionUID，然后和本地的进行比较，如果一致，则可以反序列化，否则不允许序列化操作。
 
 考虑传输过程中的耗费代价，因此设计SpFImage数据结构时要十分精简，在成员变量中，只设置了一个二维数组pixels，这个数组就是保存整张图片的像素信息。因为考虑到高斯模糊时候的精度问题，所以pixels采用了float类型。SpFImage的构造函数是比较灵活的，它允许传递一维数组或者是二维数组，数组的类型是byte或者float，对于不同的参数类型，本文都会自动进行转换。
 
@@ -164,7 +164,7 @@ sc.objectFile(initImgs_500k_path_hdfs).map(x => {
 虽然objectFile读取图像十分方便，但是如果直接将对象保存到HDFS中，储存空间相当大，存储的时间也十分长。
 \subsubsection{特征点表示}
 %%加上序列化的内容，Hadoop下怎样序列化
-在本文设计中，特征点的表示只要涉及到三个模块，分别是SpKeypoint，SpMemoryLocalFeatureList，SpLocalFeatureList。SpKeypoint表示一个sift特征点，SpMemoryLocalFeatureList保存整张图片的sift特征点，SpLocalFeatureList为接口，SpMemoryLocalFeatureList是SpLocalFeatureList的具体实现。SpKeypoint成员结构如图\ref{fig:spkeypoint}所示：
+在本文设计中，特征点的表示只要涉及到三个模块，分别是SpKeypoint，SpMemoryLocalFeatureList，SpLocalFeatureList。SpKeypoint表示一个sift特征点，SpMemoryLocalFeatureList保存整张图片的sift 特征点，SpLocalFeatureList为接口，SpMemoryLocalFeatureList是SpLocalFeatureList的具体实现。SpKeypoint成员结构如图\ref{fig:spkeypoint}所示：
 \begin{figure}[htp]
 \centering
 \includegraphics{spkeypoint}
@@ -183,7 +183,7 @@ SpMemoryLocalFeatureList数据结构保存sift算法检测一张图片的所有�
 \end{figure}
 
 \subsection{spark-sift算法}
-在这小节中将spark下怎样使用sift算法进行大规模图像库特征提取工作。主要的思想是利用上一小节介绍的spark-imagelib来实现整个sift算法，sift算法在第二章原理分析中已经详细的分析过了，在此不再详述，然后利用spark的map-reduce框架，在map函数中调用已经实现好的sift算法，在提取结束后，将特征向量保存到HDFS中，完成整个特征提取的工作。spark-sift算法如图\ref{fig:alg_sparksift}所示：
+在这小节中将spark下怎样使用sift算法进行大规模图像库特征提取工作。主要的思想是利用上一小节介绍的spark-imagelib来实现整个sift算法，sift 算法在第二章原理分析中已经详细的分析过了，在此不再详述，然后利用spark的map-reduce框架，在map函数中调用已经实现好的sift算法，在提取结束后，将特征向量保存到HDFS中，完成整个特征提取的工作。spark-sift算法如图\ref{fig:alg_sparksift}所示：
 \begin{figure}[htp]
 \centering
 \includegraphics{alg_sparksift}
@@ -207,7 +207,7 @@ var img = SpImageUtilities.readF(datainput)
 if(img != null){
     var engine = new SpDoGSIFTEngine()//进行sift 特征提取
     var kps = engine.findFeatures(img)
-    
+
     val baos = new ByteArrayOutputStream()
     IOUitls.writeBinary(baos,kps)
     (new Text(fname.toString), new BytesWritable(baos.toByteArray))//以key-value形式返回提取的特征点，key为图片名，value为特征点集
@@ -215,7 +215,7 @@ if(img != null){
 })
 \end{lstlisting}
 
-通过上面这段代码，每张图片将被划分到不同的分区中，在每个分区中，执行特征提取任务，然后将得到的特征点以key-value的形式分布式保存到HDFS中，其中key为图片的文件名，value为特征点集的字节流。
+通过上面这段代码，每张图片将被划分到不同的分区中，在每个分区中，执行特征提取任务，然后将得到的特征点以key-value的形式分布式保存到HDFS 中，其中key为图片的文件名，value为特征点集的字节流。
 \subsection{序列化模块}
 因为互联网上图片的体积一般都是1M以下，HDFS以Block形式进行存储，Block的大小是128M，因此这些文件对于HDFS来说都是小文件，众多的小文件存在时，就会造成频繁的磁盘IO。在这种情况下，磁盘的读写IO效率会比较低。其实，这种场景在我们生活中也有体会，从U盘拷贝一个2G的文件和拷贝一个由很多小文件组成的2G文件夹，速度是相差很大的。
 
@@ -258,17 +258,83 @@ val fcontext = new BytesWritable(bytes)//将图片的内容转化成byte字节�
 \hline
 函数名  &  功能 \\ %用&来分隔单元格的内容 \\表示进入下一行
 \hline %画一个横线，下面的就都是一样了，这里一共有4行内容
-sequenceFile   & 特征读取序列化后的图片，\\
+sequenceFile   & 读取hdfs序列化后的图片\\
 \hline
-createFImge   & 将BufferedImage类型的图片转换成SpFImage类型\\
+binaryFiles   & 读取hdfs图片库图片\\
 \hline
-createBufferImage  & 将SpFImage类型图片转换成BufferImage图片\\
+saveAsHadoopFile  & 将图片或者是特征点集以序列化方式保存到hdfs\\
 \hline
-checkSize & 对图片的大小进行检查\\
+FileSystem.get & 获取hdfs文件的句柄\\
+\hline
+FileSystem.delete & 删除hdfs文件\\
 \hline
 \hline
 \end{tabular}
 \end{table}
 \subsection{容错模块}
+在大数据处理中，系统的容错是一个十分重要的功能，因为处理的数据量太大，处理的时间太长，因此处理过程中发生一些错误是十分常见的情况，比如有可能处理的数据中有几个非法的数据，在Spark-SIFT系统处理过程中，我们经常就会碰到图片集合中有几张非法格式的图片。但是系统不能因为这个非法格式的数据而处理被中断或者是崩溃，因此大数据系统中应该有一套自己的容错机制。在Spark-SIFT中，系统中有一个模块会对图片格式的合法性进行判断，找出所有非法格式的图片，然后将这些文件名连同路径写到HDFS中非法文件保存目录下，系统会定期读取该目录，进行非法格式图片的删除。
+
+在Spark中如果应用运行的过程出现了运行时的异常，应用会直接退出。因此针对这种情况，在Spark-SIFT系统进行特征提取时，我们对特征提取应用的每一个stage都加入了过滤功能，将一些非法的结果过滤掉，只传送合法的结果到下一个stage，这样系统就不会因为发生异常而直接退出。具体实现时，本文是采用了Scala中的Try异常捕捉机制，当采用这种异常捕捉机制时，结果的返回一个重新封装的数据结构，该数据结构包含正确和异常的两个结果，换而言之，什么类型的结果都会返回，具体需要什么，我们可以根据条件进行过滤删选。图显示了Spark-SIFT系统在一个stage结束之后的容错处理操作。
+\begin{figure}[htp]
+\centering
+\includegraphics{find_finish}
+\caption{提取作业结果}
+\label{fig:try}
+\end{figure}
+%%需要做一些工作
 \section{系统执行与验证}
+在这小节中将会介绍整个Spark-SIFT大规模特征提取系统的编译，执行及正确性验证。
+\subsection{spark-imageLib编译}
+本文设计的图像基础库需要嵌入到spark系统中，因此需要和spark的源码一块编译，然后在spark应用开发中，以依赖的形式导入spark-imageLib库支持。本文使用的spark版本是2.0.0，其源代码可以在spark 官网或者是github网站下载。spark源码是一个maven工程，maven是一个高级的项目管理工具，可以管理项目中的所有依赖及其他配置。下面简要的介绍一下创建spark-imageLib的步骤：
+\begin{compactenum}
+\item 在spark源码根目录下创建一个新的maven工程，工程的groupId为org.apache.spark，artifactId为spark-imageLib\textunderscore2.11；
+\item 修改spark源码根目录下的pom.xml文件，在modules配置项中加入module值为imageLib的配置项；
+\item 编译源代码，编译命令为mvn clean install，该命令会重新编译spark源码，生成新的spark安装包，我们需要将新的spark安装包安装在集群上；
+\end{compactenum}
+\subsection{特征提取应用程序提交}
+在spark特征提取应用程序中引用spark-imageLib库依赖，编写特征提取程序，编译生成jar包，然后将该jar使用spark的应用程序提交命令将其提交到spark运行集群上。提交命令如下：
+\begin{code}
+spark-submit
+\\--class cn.zxm.scala.sparkImageDeal.ImagesFeatureEx
+\\--master spark://hadoop0:7077
+spark-SIFT-1.0.SNAPSHOT.jar
+\end{code}
+\subsection{正确性验证}
+以280M的图片数据集为例子，该数据集共有1833张图片，简单展示一下从Spark-SIFT系统的特征提取功能，运行提取作业结果如图\ref{fig:find_finish} 所示。我们从该数据集中随机抽取了4张图片，分别是ILSVRC2012\textunderscore val\textunderscore00021292.JPEG，ILSVRC2012\textunderscore val\textunderscore00021324.JPEG，ILSVRC2012\textunderscore val\textunderscore00021353.JPEG 及ILSVRC2012\textunderscore\\val\textunderscore00021358.JPEG，使用这四张图片去查询匹配以验证提取的特征点的正确性，匹配程序中的匹配条件为匹配特征点数必须大于查询图片特征点的1/2,并且不能超过查询特征点总数。四张图片的匹配结果分别如图\ref{fig:00021292_match}，图\ref{fig:00021324_match}，图\ref{fig:00021324_match}，图\ref{fig:00021358_match}所示，其中第一张图片查询特征点总数为362，匹配查询结果为一张，错误率为0\%，匹配点数为296；第二张图片查询特征点总数为1030，匹配查询结果为一张，错误率为0\%，匹配点数为898；第三张图片查询特征点总数为400，匹配查询结果为一张，错误率为0\%，匹配点数为317；第四张查询特征点数为351，匹配查询结果为5张，错误率为0.27\%，和原图匹配的特征点数为318，在所有的匹配图片中是最高的。
+\begin{figure}[htp]
+\centering
+\includegraphics{find_finish}
+\caption{提取作业结果}
+\label{fig:find_finish}
+\end{figure}
+
+\begin{figure}[htp]
+\centering
+\includegraphics{00021292_match}
+\caption{00021292图片匹配结果}
+\label{fig:00021292_match}
+\end{figure}
+
+\begin{figure}[htp]
+\centering
+\includegraphics{00021324_match}
+\caption{00021324图片匹配结果}
+\label{fig:00021324_match}
+\end{figure}
+
+\begin{figure}[htp]
+\centering
+\includegraphics{00021353_match}
+\caption{00021353图片匹配结果}
+\label{fig:00021353_match}
+\end{figure}
+
+\begin{figure}[htp]
+\centering
+\includegraphics{00021358_match}
+\caption{00021358图片匹配结果}
+\label{fig:00021358_match}
+\end{figure}
+
 \section{本章小结}
+本章主要介绍了大规模图像库特征提取系统Spark-SIFT的设计和实现，首先介绍了系统的主要框架，从软件架构的角度分析了系统的每一个模块的设计和实现，分别介绍了spark-imageLib，spark-sift算法，序列化模块，存储模块以及容错模块。最后展示了特征提取系统的编译执行及提取结果。
