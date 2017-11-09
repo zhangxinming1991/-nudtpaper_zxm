@@ -18,7 +18,7 @@
 \begin{itemize}
 \item 局部不变性好，在物体受到比较严重的物理噪声干扰下，依然可以准确的描述出物体原有的特性。
 \item 特征信息丰富，一个特征点是采用长度为128的一维向量进行表示。
-\item 可扩展性强，可以很方便的与其他形式的特征向量进行联合。
+\item 可扩展性强，很容易和其他形式的特征向量结合在一起，使得特征信息更加丰富。
 \end{itemize}
 
 SIFT算法大体可以划分为5个步骤，分别是高斯塔建立，高斯差分塔建立，极点检测，消除边缘响应，关键点方向的分配和描述，接下来，将会对这几个步骤进行分析：
@@ -194,7 +194,7 @@ countByKey() 根据key信息统计记录的条数\\
 \end{table}
 
 \subsubsection{RDD的缓存原理}
-RDD的特点在于它是一个内存数据结构，所有对它的操作是在内存中完成的，这也是为什么Spark在迭代次数多的任务中计算的速率要远快于Hadoop。在Spark中，某个数据集会被后续操作使得到，或者是整体使用的频率十分高，这时候就可以将其缓存到内存中，即持久化一个数据集在内存中。具体可以通过persist()或cache()方法可以标识一个要被持久化的RDD。persist()和cache()的实现如下：
+RDD的特点在于它是一个内存数据结构，所有对它的操作是在内存中完成的，这也是为什么Spark在迭代次数多的任务中计算的速率要远快于Hadoop。在Spark中，某个数据集会被后续操作使得到，或者是整体使用的频率十分高，这时候就可以将其缓存到内存中，即持久化一个数据集在内存中。在代码实现时，持久化一个RDD是通过调用persist()或者是cache()函数实现的。 persist() 和cache() 的实现如下：
 \begin{lstlisting}[language=Java,numbers=none,frame=none]
 /**Persist this RDD with the default storage level('MEMORY_ONLY').*/
 def persist(): this.type = persist(StorageLevel.MEMORY_ONLY)
