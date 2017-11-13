@@ -1,6 +1,6 @@
 ﻿\chapter{Spark-SIFT性能测试和分析}
 \section{实验环境}
-本文构建了一个包含7台PC机的PC集群进行性能测试和分析。集群的主要配置如下：
+本文构建了一个包含7台PC机的PC集群作为Spark-SIFT系统的性能测试和分析实验平台，实验平台集群的主要配置参数如下：
 \begin{compactenum}
 \item 集群总体配置7台PC，其中1台master，6台worker；Spark的版本为2.0.0，集群的管理模式采用Spark原生的standalone模式。
 \item Master节点配置为：处理器AMD APU，内存为16GB，硬盘为1TB，操作系统为Ubuntu 14.04；
@@ -80,3 +80,4 @@
 \end{figure}
 \section{本章小结}
 本章分析Spark-SIFT系统的综合性能以及针对其提出的三种优化方案。从实验数据来，Spark-SIFT系统在处理GB级别以上的图片数据集时，速度明显快于单机的处理速度，加速比优化GPU，从而达到了设计的预期目标。
+
