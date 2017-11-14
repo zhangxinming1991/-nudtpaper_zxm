@@ -95,7 +95,7 @@ checkSize  & SpImageUtilities & 对图片的大小进行检查\\
 \begin{lstlisting}[language=Java,numbers=none,frame=none]
 def sequenceFile[K,V](path:String,KeyClass:Class[K],valueClass:Class[V],minPartitions:Int):RDD[(K,V)]=withScope{}
 \end{lstlisting}
-sequenceFile保存的是Writable，换句话讲，key和value也必须是Writable类型的,表\ref{tab:Writable}列出了常见类型的Writable对应类型。
+sequenceFile保存的是Writable对象，换句话讲，key和value也必须是Writable类型的,表\ref{tab:Writable}列出了常见类型的Writable对应类型。
 \begin{table}[h] %开始一个表格environment，表格的位置是h,here。
 \caption{Writable对应类型} %显示表格的标题
 \centering
@@ -134,7 +134,7 @@ val fn_rdd = sc.sequnceFile(imageSEQ_path,classOf[Text],classOf[BytesWritable],t
 ...
 })
 \end{lstlisting}
-采用binaryFiles接口进行读取时，返回的是（String,PortableDataStream）类型的RDD，binaryFiles的定义如下：
+采用binaryFiles接口进行读取时，返回的是一个key-value类型的RDD，key为文件名，而value则是文件的内容的字节流，binaryFiles的定义如下：
 \begin{lstlisting}[language=Java,numbers=none,frame=none]
 def binaryFiles(path:String,minPartitions:Int = defaultMinPartitions):RDD[(String,PortableDataStream)]=withScope{}
 \end{lstlisting}
