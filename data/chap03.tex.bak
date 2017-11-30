@@ -164,7 +164,7 @@ sc.objectFile(initImgs_500k_path_hdfs).map(x => {
 虽然objectFile读取图像十分方便，但是如果直接将对象保存到HDFS中，储存空间相当大，存储的时间也十分长。
 \subsubsection{特征点表示}
 %%加上序列化的内容，Hadoop下怎样序列化
-在本文设计中，特征点的表示主要涉及到三个模块，分别是SpKeypoint，SpMemoryLocalFeatureList，SpLocalFeatureList。SpKeypoint表示一个sift特征点，SpMemoryLocalFeatureList保存整张图片的sift 特征点，SpLocalFeatureList为接口，SpMemoryLocalFeatureList是SpLocalFeatureList的具体实现。SpKeypoint成员结构如图\ref{fig:spkeypoint}所示：
+在本文设计中，特征点的表示只要涉及到三个模块，分别是SpKeypoint，SpMemoryLocalFeatureList，SpLocalFeatureList。SpKeypoint表示一个sift特征点，SpMemoryLocalFeatureList保存整张图片的sift 特征点，SpLocalFeatureList为接口，SpMemoryLocalFeatureList是SpLocalFeatureList的具体实现。SpKeypoint成员结构如图\ref{fig:spkeypoint}所示：
 \begin{figure}[htp]
 \centering
 \includegraphics{spkeypoint}
@@ -183,7 +183,7 @@ SpMemoryLocalFeatureList数据结构保存sift算法检测一张图片的所有�
 \end{figure}
 
 \subsection{spark-sift算法}
-在这小节中将介绍spark下怎样使用sift算法进行大规模图像库特征提取工作。主要的思想是利用上一小节介绍的spark-imagelib来实现整个sift算法，sift 算法在第二章原理分析中已经详细的分析过了，在此不再详述，然后利用spark的map-reduce框架，在map函数中调用已经实现好的sift算法，在提取结束后，将特征向量保存到HDFS中，完成整个特征提取的工作。spark-sift算法如图\ref{fig:alg_sparksift}所示：
+在这小节中将spark下怎样使用sift算法进行大规模图像库特征提取工作。主要的思想是利用上一小节介绍的spark-imagelib来实现整个sift算法，sift 算法在第二章原理分析中已经详细的分析过了，在此不再详述，然后利用spark的map-reduce框架，在map函数中调用已经实现好的sift算法，在提取结束后，将特征向量保存到HDFS中，完成整个特征提取的工作。spark-sift算法如图\ref{fig:alg_sparksift}所示：
 \begin{figure}[htp]
 \centering
 \includegraphics{alg_sparksift}
@@ -300,6 +300,7 @@ spark-submit
 spark-SIFT-1.0.SNAPSHOT.jar
 \end{code}
 \subsection{正确性验证}
+以280M的图片数据集为例子，该数据集共有1833张图片，简单展示一下从Spark-SIFT系统的特征提取功能，运行提取作业结果如图\ref{fig:find_finish} 所示。我们从该数据集中随机抽取了4张图片，分别是ILSVRC2012\textunderscore val\textunderscore00021292.JPEG，ILSVRC2012\textunderscore val\textunderscore00021324.JPEG，ILSVRC2012\textunderscore val\textunderscore00021353.JPEG 及ILSVRC2012\textunderscore\\val\textunderscore00021358.JPEG，使用这四张图片去查询匹配以验证提取的特征点的正确性，匹配程序中的匹配条件为匹配特征点数必须大于查询图片特征点的1/2,并且不能超过查询特征点总数。四张图片的匹配结果分别如图\ref{fig:00021292_match}，图\ref{fig:00021324_match}，图\ref{fig:00021324_match}，图\ref{fig:00021358_match}所示，其中第一张图片查询特征点总数为362，匹配查询结果为一张，错误率为0\%，匹配点数为296；第二张图片查询特征点总数为1030，匹配查询结果为一张，错误率为0\%，匹配点数为898；第三张图片查询特征点总数为400，匹配查询结果为一张，错误率为0\%，匹配点数为317；第四张查询特征点数为351，匹配查询结果为5张，错误率为0.27\%，和原图匹配的特征点数为318，在所有的匹配图片中是最高的。
 \begin{figure}[htp]
 \centering
 \includegraphics{find_finish}
@@ -313,8 +314,6 @@ spark-SIFT-1.0.SNAPSHOT.jar
 \caption{00021292图片匹配结果}
 \label{fig:00021292_match}
 \end{figure}
-
-以280M的图片数据集为例子，该数据集共有1833张图片，简单展示一下从Spark-SIFT系统的特征提取功能，运行提取作业结果如图\ref{fig:find_finish} 所示。我们从该数据集中随机抽取了4张图片，分别是ILSVRC2012\textunderscore val\textunderscore00021292.JPEG，ILSVRC2012\textunderscore val\textunderscore00021324.JPEG，ILSVRC2012\textunderscore val\textunderscore00021353.JPEG 及ILSVRC2012\textunderscore\\val\textunderscore00021358.JPEG，使用这四张图片去查询匹配以验证提取的特征点的正确性，匹配程序中的匹配条件为匹配特征点数必须大于查询图片特征点的1/2,并且不能超过查询特征点总数。四张图片的匹配结果分别如图\ref{fig:00021292_match}，图\ref{fig:00021324_match}，图\ref{fig:00021324_match}，图\ref{fig:00021358_match}所示，其中第一张图片查询特征点总数为362，匹配查询结果为一张，错误率为0\%，匹配点数为296；第二张图片查询特征点总数为1030，匹配查询结果为一张，错误率为0\%，匹配点数为898；第三张图片查询特征点总数为400，匹配查询结果为一张，错误率为0\%，匹配点数为317；第四张查询特征点数为351，匹配查询结果为5张，错误率为0.27\%，和原图匹配的特征点数为318，在所有的匹配图片中是最高的。
 
 \begin{figure}[htp]
 \centering

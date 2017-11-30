@@ -1,0 +1,65 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: thesis.aux
+The style file: bstutf8.bst
+Database file #1: ref/refs.bib
+-- BUPTThesis.bst version 1.0 Beta 1 (2009/05/31) by Yu Zhang.
+-- http://code.google.com/p/buptthesis/
+-- See the "userguide.pdf" manual for usage information.
+Warning--The author in facebook is missing.
+Warning--There is month but no year in facebook
+Warning--The author in baiduPic is missing.
+Warning--There is month but no year in baiduPic
+Warning--The author in GettyAAT is missing.
+Warning--There is month but no year in GettyAAT
+Warning--The author in PageRank is missing.
+Warning--empty pages in QBIC
+Warning--The author in webseek is missing.
+Warning--There is month but no year in webseek
+Warning--The editor in HSVColor1 is missing.
+Warning--empty editor in HSVColor1
+Warning--The editor in HSVColor2 is missing.
+Warning--empty editor in HSVColor2
+Warning--empty editor in GLCM
+Warning--empty booktitle in GLCM
+Warning--empty pages in GLCM
+Warning--The editor in Boundary is missing.
+Warning--empty editor in Boundary
+Warning--empty pages in Boundary
+Warning--there's a publisher but no address in Fourier
+Warning--The editor in SIFT is missing.
+Warning--empty editor in SIFT
+Warning--empty pages in SIFT
+Warning--The editor in SimilaritySearche is missing.
+Warning--empty editor in SimilaritySearche
+Warning--The editor in ProximitySearch is missing.
+Warning--empty editor in ProximitySearch
+Warning--The editor in SRtree is missing.
+Warning--empty editor in SRtree
+Warning--The editor in LSH is missing.
+Warning--empty editor in LSH
+Warning--The editor in Spark is missing.
+Warning--empty editor in Spark
+Warning--empty pages in Spark
+Warning--The editor in HDFS is missing.
+Warning--empty editor in HDFS
+Warning--The editor in SURF is missing.
+Warning--empty editor in SURF
+Warning--The editor in ORB is missing.
+Warning--empty editor in ORB
+Warning--The editor in HadoopImage2 is missing.
+Warning--empty editor in HadoopImage2
+Warning--empty pages in HadoopImage2
+Warning--The editor in HadoopImage3 is missing.
+Warning--empty editor in HadoopImage3
+Warning--empty pages in SparkGraph
+Warning--empty pages in Iijima
+Warning--The editor in Witkin is missing.
+Warning--empty editor in Witkin
+Warning--The editor in Koenderink is missing.
+Warning--empty editor in Koenderink
+Warning--The editor in Hadoop is missing.
+Warning--empty editor in Hadoop
+Warning--The author in Imagenet is missing.
+Warning--There is month but no year in Imagenet
+
+Done.
+(There were 56 warnings)
