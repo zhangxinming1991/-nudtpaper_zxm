@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2017.11.29)  30 NOV 2017 12:32
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2017.11.29)  1 DEC 2017 21:51
 entering extended mode
 **thesis.tex
 (C:\Users\simon\Desktop\-nudtpaper_zxm\thesis.tex
@@ -2221,7 +2221,11 @@ t/12.045 y[]$\EU1/TimesNewRoman(0)/m/n/12.045 ,...,$\OML/txmi/m/it/12.045 y[]$\
 EU1/TimesNewRoman(0)/m/n/12.045 )\xeCJK@rm/bx/n/12.045 ，|
  []
 
-[6] [7]
+
+Underfull \vbox (badness 1603) has occurred while \output is active []
+
+ [6]
+[7]
 File: figures/sparkfw.png Graphic file (type QTm)
  <use  "figures/sparkfw.png" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
