@@ -23,7 +23,7 @@
 \BOOKMARK [1][-]{section.3.1}{系统架构与数据流程}{chapter.3}% 23
 \BOOKMARK [1][-]{section.3.2}{系统模块设计}{chapter.3}% 24
 \BOOKMARK [2][-]{subsection.3.2.1}{spark图像基础库spark-imageLib}{section.3.2}% 25
-\BOOKMARK [2][-]{subsection.3.2.2}{spark-sift算法}{section.3.2}% 26
+\BOOKMARK [2][-]{subsection.3.2.2}{Spark-sift算法}{section.3.2}% 26
 \BOOKMARK [2][-]{subsection.3.2.3}{序列化模块}{section.3.2}% 27
 \BOOKMARK [2][-]{subsection.3.2.4}{存储模块}{section.3.2}% 28
 \BOOKMARK [2][-]{subsection.3.2.5}{容错模块}{section.3.2}% 29
@@ -44,7 +44,7 @@
 \BOOKMARK [1][-]{section.5.2}{实验结果与分析}{chapter.5}% 44
 \BOOKMARK [2][-]{subsection.5.2.1}{key-value图片描述方式}{section.5.2}% 45
 \BOOKMARK [2][-]{subsection.5.2.2}{分割式特征提取算法}{section.5.2}% 46
-\BOOKMARK [2][-]{subsection.5.2.3}{Shuffle-efficient特征提取算法}{section.5.2}% 47
+\BOOKMARK [2][-]{subsection.5.2.3}{Shuffle-Efficient特征提取算法}{section.5.2}% 47
 \BOOKMARK [2][-]{subsection.5.2.4}{系统综合性能对比}{section.5.2}% 48
 \BOOKMARK [1][-]{section.5.3}{本章小结}{chapter.5}% 49
 \BOOKMARK [0][-]{chapter.6}{总结和展望}{}% 50

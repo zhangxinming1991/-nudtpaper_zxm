@@ -17,7 +17,7 @@
 \contentsline {figure}{\numberline {3.1}{\ignorespaces 大规模图像库特征提取系统Spark-SIFT系统框架\relax }}{28}{figure.caption.28}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Spark-SIFT软件架构\relax }}{29}{figure.caption.29}
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Spark下图像表示\relax }}{30}{figure.caption.30}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces SpKeypoint数据结构\relax }}{32}{figure.caption.34}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces SpKeypoint数据结构\relax }}{33}{figure.caption.34}
 \contentsline {figure}{\numberline {3.5}{\ignorespaces 数据结构\relax }}{33}{figure.caption.35}
 \contentsline {figure}{\numberline {3.6}{\ignorespaces spark-sift算法流程\relax }}{34}{figure.caption.36}
 \contentsline {figure}{\numberline {3.7}{\ignorespaces 序列化模块流程框架图\relax }}{35}{figure.caption.37}

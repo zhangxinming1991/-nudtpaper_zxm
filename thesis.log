@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2017.11.29)  1 DEC 2017 21:51
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2017.11.29)  2 DEC 2017 12:22
 entering extended mode
 **thesis.tex
 (C:\Users\simon\Desktop\-nudtpaper_zxm\thesis.tex
@@ -2371,14 +2371,18 @@ File: figures/image_represent.png Graphic file (type QTm)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[30] [31]
+[30]
+Underfull \vbox (badness 5217) has occurred while \output is active []
+
+ [31]
 File: figures/spkeypoint.png Graphic file (type QTm)
- <use  "figures/spkeypoint.png" >
+
+<use  "figures/spkeypoint.png" >
 File: figures/spmemflist.png Graphic file (type QTm)
  <use  "figures/spmemflist.png" >
-[32]
 File: figures/alg_sparksift.png Graphic file (type QTm)
- <use  "figures/alg_sparksift.png" >
+
+<use  "figures/alg_sparksift.png" > [32]
 Requested font "Times New Roman/ICU:script=latn;language=DFLT;mapping=tex-text;
 " at 6.0pt
  -> C:/Windows/Fonts/times.ttf
@@ -2395,8 +2399,8 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: figures/try_stage.png Graphic file (type QTm)
 
 <use  "figures/try_stage.png" > [36]
-Overfull \hbox (40.42593pt too wide) in paragraph at lines 290--291
-[]\xeCJK@rm/bx/n/12.045 在 \EU1/TimesNewRoman(0)/m/n/12.045 spark \xeCJK@rm/bx
+Overfull \hbox (42.43636pt too wide) in paragraph at lines 290--291
+[]\xeCJK@rm/bx/n/12.045 在 \EU1/TimesNewRoman(0)/m/n/12.045 Spark \xeCJK@rm/bx
 /n/12.045 源 码 根 目 录 下 创 建 一 个 新 的 \EU1/TimesNewRoman(0)
 /m/n/12.045 maven \xeCJK@rm/bx/n/12.045 工 程，| 工 程 的 \EU1/TimesNewRo
 man(0)/m/n/12.045 groupId \xeCJK@rm/bx/n/12.045 为 \EU1/TimesNewRoman(0)/m/n/1
@@ -2492,14 +2496,17 @@ File: figures/data_seg_accuracy.png Graphic file (type QTm)
 <use  "figures/data_seg_accuracy.png" >
 File: figures/data_Partition.png Graphic file (type QTm)
  <use  "figures/data_Partition.png" >
-[50]
-File: figures/data_fourWays.png Graphic file (type QTm)
- <use  "figures/data_fourWays.png" >
-File: figures/data_seg_speedup.png Graphic file (type QTm)
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-<use  "figures/data_seg_speedup.png" >
+ [50]
+File: figures/data_fourWays.png Graphic file (type QTm)
+
+<use  "figures/data_fourWays.png" >
+File: figures/data_seg_speedup.png Graphic file (type QTm)
+ <use  "figures/data_seg_speedup.png" >
 File: figures/data_spark_gpu.png Graphic file (type QTm)
- <use  "figures/data_spark_gpu.png" >)
+
+<use  "figures/data_spark_gpu.png" >)
 (C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap06.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -2548,10 +2555,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 27087 strings out of 430478
- 486071 string characters out of 3191501
- 593316 words of memory out of 3000000
- 29718 multiletter control sequences out of 15000+200000
+ 27076 strings out of 430478
+ 485854 string characters out of 3191501
+ 596316 words of memory out of 3000000
+ 29707 multiletter control sequences out of 15000+200000
  68198 words of font info for 267 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  51i,11n,74p,1374b,1812s stack positions out of 5000i,500n,10000p,200000b,50000s
