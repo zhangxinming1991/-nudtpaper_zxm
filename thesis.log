@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2017.11.29)  2 DEC 2017 12:22
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2017.11.29)  3 DEC 2017 12:12
 entering extended mode
 **thesis.tex
 (C:\Users\simon\Desktop\-nudtpaper_zxm\thesis.tex
@@ -2164,9 +2164,9 @@ Requested font "Adobe Song Std/ICU:script=latn;language=DFLT;mapping=tex-text;"
 Requested font "Adobe Song Std/ICU:script=latn;language=DFLT;mapping=tex-text;"
  at 14.05249pt
  -> C:/Windows/Fonts/AdobeSongStd-Light.otf
-File: figures/retrivelfw.png Graphic file (type QTm)
+File: figures/retrivelfw.pdf Graphic file (type QTm)
 
-<use  "figures/retrivelfw.png" >
+<use  "figures/retrivelfw.pdf" >
 Requested font "Adobe Song Std" at 10.53937pt
  -> C:/Windows/Fonts/AdobeSongStd-Light.otf
 Requested font "Adobe Song Std/ICU" at 10.53937pt
@@ -2187,6 +2187,9 @@ Requested font "Adobe Song Std/ICU:script=latn;language=DFLT;mapping=tex-text;"
 
 
 ]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [2]
 Requested font "Adobe Song Std" at 12.045pt
  -> C:/Windows/Fonts/AdobeSongStd-Light.otf
 Requested font "Adobe Song Std/ICU" at 12.045pt
@@ -2206,9 +2209,6 @@ Requested font "Adobe Song Std/ICU:script=latn;language=DFLT;mapping=tex-text;"
  at 12.045pt
  -> C:/Windows/Fonts/AdobeSongStd-Light.otf
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [2]
 [3] [4] [5]
 Overfull \hbox (5.44691pt too wide) in paragraph at lines 58--59
 []$\OML/txmi/m/it/12.045 l[]$ \xeCJK@rm/bx/n/12.045 范 数 距 离。| 给 定
@@ -2222,26 +2222,26 @@ EU1/TimesNewRoman(0)/m/n/12.045 )\xeCJK@rm/bx/n/12.045 ，|
  []
 
 
-Underfull \vbox (badness 1603) has occurred while \output is active []
+Underfull \vbox (badness 1337) has occurred while \output is active []
 
  [6]
 [7]
-File: figures/sparkfw.png Graphic file (type QTm)
- <use  "figures/sparkfw.png" >
+File: figures/sparkfw.pdf Graphic file (type QTm)
+ <use  "figures/sparkfw.pdf" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8]
 File: figures/hdfsfw.jpg Graphic file (type QTm)
 
 <use  "figures/hdfsfw.jpg" > [9]
-File: figures/workfw.png Graphic file (type QTm)
- <use  "figures/workfw.png" >
+File: figures/workfw.pdf Graphic file (type QTm)
+ <use  "figures/workfw.pdf" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [10]
-File: figures/paperfw.png Graphic file (type QTm)
+File: figures/paperfw.pdf Graphic file (type QTm)
 
-<use  "figures/paperfw.png" >
+<use  "figures/paperfw.pdf" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [11]
@@ -2281,8 +2281,8 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [18]
 [19]
-File: figures/blockmanager.png Graphic file (type QTm)
- <use  "figures/blockmanager.png" >
+File: figures/blockmanager.pdf Graphic file (type QTm)
+ <use  "figures/blockmanager.pdf" >
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -2321,25 +2321,25 @@ xt;" at 10.95pt
 Requested font "Adobe Fangsong Std/ICU:script=latn;language=DFLT;mapping=tex-te
 xt;" at 10.95pt
  -> C:/Windows/Fonts/AdobeFangsongStd-Regular (v5.010).otf
+ [20]
 Requested font "Courier New/B/ICU:script=latn;language=DFLT;mapping=tex-text;" 
 at 10.95pt
  -> C:/Windows/Fonts/courbd.ttf
- [20]
-File: figures/rdd_cache.png Graphic file (type QTm)
+File: figures/rdd_cache.pdf Graphic file (type QTm)
 
-<use  "figures/rdd_cache.png" >
-Underfull \vbox (badness 10000) has occurred while \output is active []
+<use  "figures/rdd_cache.pdf" >
+Underfull \vbox (badness 3343) has occurred while \output is active []
 
  [21]
 File: figures/dependency.png Graphic file (type QTm)
 
-<use  "figures/dependency.png" >
+<use  "figures/dependency.png" > [22]
 File: figures/schedulerfw.png Graphic file (type QTm)
- <use  "figures/schedulerfw.png" > [22]
+ <use  "figures/schedulerfw.png" >
+[23]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [23]
-[24]
+ [24]
 Overfull \hbox (47.68672pt too wide) in paragraph at lines 260--262
 \xeCJK@rm/bx/n/12.045 内 容。| 内 存 调 优 过 程 中，| 有 三 个 �
 �� 向 值 得 考 虑，| 分 别 是 \EU1/TimesNewRoman(0)/m/n/12.045 JVM \xe
@@ -2348,12 +2348,9 @@ r)
  []
 
 [25]
-File: figures/collect.png Graphic file (type QTm)
- <use  "figures/collect.png" >
-Underfull \vbox (badness 2376) has occurred while \output is active []
-
- [26])
-(C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap03.tex [27]
+File: figures/collect.pdf Graphic file (type QTm)
+ <use  "figures/collect.pdf" > [26])
+(C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap03.tex [27] [28]
 File: figures/spark_sift_fw.png Graphic file (type QTm)
 
 <use  "figures/spark_sift_fw.png" >
@@ -2361,44 +2358,48 @@ File: figures/spsift_core_fw.png Graphic file (type QTm)
  <use  "figures/spsift_core_fw.png" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [28
+ [29
 
 
 ]
-File: figures/image_represent.png Graphic file (type QTm)
+File: figures/image_represent.pdf Graphic file (type QTm)
 
-<use  "figures/image_represent.png" > [29]
+<use  "figures/image_represent.pdf" > [30]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[30]
-Underfull \vbox (badness 5217) has occurred while \output is active []
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [31]
-File: figures/spkeypoint.png Graphic file (type QTm)
+[32]
+File: figures/spkeypoint.pdf Graphic file (type QTm)
+ <use  "figures/spkeypoint.pdf" >
+File: figures/SpMemoryLocalFeatureList.pdf Graphic file (type QTm)
 
-<use  "figures/spkeypoint.png" >
-File: figures/spmemflist.png Graphic file (type QTm)
- <use  "figures/spmemflist.png" >
-File: figures/alg_sparksift.png Graphic file (type QTm)
+<use  "figures/SpMemoryLocalFeatureList.pdf" >
+File: figures/alg_sparksift.pdf Graphic file (type QTm)
 
-<use  "figures/alg_sparksift.png" > [32]
+<use  "figures/alg_sparksift.pdf" > [33]
 Requested font "Times New Roman/ICU:script=latn;language=DFLT;mapping=tex-text;
 " at 6.0pt
  -> C:/Windows/Fonts/times.ttf
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [33]
-File: figures/alg_sequence.png Graphic file (type QTm)
-
-<use  "figures/alg_sequence.png" > [34]
+ [34]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [35]
-File: figures/try_stage.png Graphic file (type QTm)
+File: figures/alg_sequence.pdf Graphic file (type QTm)
 
-<use  "figures/try_stage.png" > [36]
+<use  "figures/alg_sequence.pdf" > [36]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [37]
+File: figures/try_stage.pdf Graphic file (type QTm)
+
+<use  "figures/try_stage.pdf" > [38]
 Overfull \hbox (42.43636pt too wide) in paragraph at lines 290--291
 []\xeCJK@rm/bx/n/12.045 在 \EU1/TimesNewRoman(0)/m/n/12.045 Spark \xeCJK@rm/bx
 /n/12.045 源 码 根 目 录 下 创 建 一 个 新 的 \EU1/TimesNewRoman(0)
@@ -2407,14 +2408,9 @@ man(0)/m/n/12.045 groupId \xeCJK@rm/bx/n/12.045 为 \EU1/TimesNewRoman(0)/m/n/1
 2.045 org.apache.spark\xeCJK@rm/bx/n/12.045 ，|
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [37]
 Requested font "Courier New/ICU:script=latn;language=DFLT;mapping=tex-text;" at
  12.045pt
  -> C:/Windows/Fonts/cour.ttf
-
 
 LaTeX Font Warning: Font shape `EU1/CourierNew(0)/tt/n' undefined
 (Font)              using `EU1/CourierNew(0)/m/n' instead on input line 296.
@@ -2427,7 +2423,7 @@ LaTeX Font Warning: Font shape `EU1/TimesNewRoman(0)/tt/n' undefined
 File: figures/find_finish.png Graphic file (type QTm)
 <use  "figures/find_finish.png" >
 File: figures/00021292_match.png Graphic file (type QTm)
- <use  "figures/00021292_match.png" > [38]
+ <use  "figures/00021292_match.png" > [39]
 File: figures/00021324_match.png Graphic file (type QTm)
 
 <use  "figures/00021324_match.png" >
@@ -2436,108 +2432,111 @@ File: figures/00021353_match.png Graphic file (type QTm)
 File: figures/00021358_match.png Graphic file (type QTm)
 
 <use  "figures/00021358_match.png" >)
-(C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap04.tex [39]
+(C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap04.tex [40]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [41]
 File: figures/kv_image.png Graphic file (type QTm)
 
-<use  "figures/kv_image.png" > [40
+<use  "figures/kv_image.png" > [42
 
 
 ]
 File: figures/segmentation.png Graphic file (type QTm)
  <use  "figures/segmentation.png" >
-File: figures/alg_segmentation.png Graphic file (type QTm)
+File: figures/alg_segmentation.pdf Graphic file (type QTm)
 
-<use  "figures/alg_segmentation.png" >
+<use  "figures/alg_segmentation.pdf" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [41]
+ [43]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 41.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [42]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [43]
-File: figures/hash_shuffle.png Graphic file (type QTm)
-
-<use  "figures/hash_shuffle.png" >
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [44]
-File: figures/sort_shuffle.png Graphic file (type QTm)
-
-<use  "figures/sort_shuffle.png" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [45]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [46]
+File: figures/hash_shuffle.pdf Graphic file (type QTm)
+
+<use  "figures/hash_shuffle.pdf" >
+File: figures/sort_shuffle.pdf Graphic file (type QTm)
+ <use  "figures/sort_shuffle.pdf" >
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [47]
 File: figures/seg_shuffle.png Graphic file (type QTm)
 
 <use  "figures/seg_shuffle.png" >)
-(C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap05.tex [46] [47]
-File: figures/data_loadPerformance.png Graphic file (type QTm)
+(C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap05.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-<use  "figures/data_loadPerformance.png" >
-File: figures/data_keyValue_ratio.png Graphic file (type QTm)
+ [48]
+[49]
+File: figures/data_loadPerformance.pdf Graphic file (type QTm)
+ <use  "figures/data_loadPerformance.pdf" >
+File: figures/data_keyValue_ratio.pdf Graphic file (type QTm)
 
-<use  "figures/data_keyValue_ratio.png" > [48
+<use  "figures/data_keyValue_ratio.pdf" > [50
 
 
 ]
-File: figures/data_seg_speed.png Graphic file (type QTm)
-
-<use  "figures/data_seg_speed.png" >
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [49]
-File: figures/data_seg_accuracy.png Graphic file (type QTm)
-
-<use  "figures/data_seg_accuracy.png" >
-File: figures/data_Partition.png Graphic file (type QTm)
- <use  "figures/data_Partition.png" >
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [50]
-File: figures/data_fourWays.png Graphic file (type QTm)
-
-<use  "figures/data_fourWays.png" >
-File: figures/data_seg_speedup.png Graphic file (type QTm)
- <use  "figures/data_seg_speedup.png" >
-File: figures/data_spark_gpu.png Graphic file (type QTm)
-
-<use  "figures/data_spark_gpu.png" >)
-(C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap06.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [51]
+File: figures/data_seg_speed.pdf Graphic file (type QTm)
+
+<use  "figures/data_seg_speed.pdf" >
+File: figures/data_seg_accuracy.pdf Graphic file (type QTm)
+ <use  "figures/data_seg_accuracy.pdf" >
+File: figures/data_Partition.pdf Graphic file (type QTm)
+
+<use  "figures/data_Partition.pdf" >
+File: figures/data_fourWays.pdf Graphic file (type QTm)
+ <use  "figures/data_fourWays.pdf" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [52]
-[53]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [54
+ [53]
+File: figures/data_seg_speedup.pdf Graphic file (type QTm)
 
+<use  "figures/data_seg_speedup.pdf" >
+File: figures/data_spark_gpu.pdf Graphic file (type QTm)
+ <use  "figures/data_spark_gpu.pdf" >)
+(C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap06.tex [54]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-])
-(C:\Users\simon\Desktop\-nudtpaper_zxm\data/ack.tex [55]
+ [55]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [56
 
+
 ])
-[57] (C:\Users\simon\Desktop\-nudtpaper_zxm\thesis.bbl
+(C:\Users\simon\Desktop\-nudtpaper_zxm\data/ack.tex [57]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [58
+
+])
+[59] (C:\Users\simon\Desktop\-nudtpaper_zxm\thesis.bbl
 Underfull \hbox (badness 7522) in paragraph at lines 25--27
 []\EU1/TimesNewRoman(0)/tt/n/12.045 Art and Architecture. [][]$[][][][][] [] []
  [] [][][] [] [][][][][] [] [][][] [] [][][][][][][][] [] [][][][][] []
  []
 
-[58
+[60
 
 
-] [59]) (C:\Users\simon\Desktop\-nudtpaper_zxm\data/resume.tex [60])
-[61
+] [61]) (C:\Users\simon\Desktop\-nudtpaper_zxm\data/resume.tex [62])
+[63
 
 ]
 \tf@thm=\write8
@@ -2556,11 +2555,11 @@ LaTeX Warning: There were multiply-defined labels.
  ) 
 Here is how much of TeX's memory you used:
  27076 strings out of 430478
- 485854 string characters out of 3191501
- 596316 words of memory out of 3000000
+ 485882 string characters out of 3191501
+ 608340 words of memory out of 3000000
  29707 multiletter control sequences out of 15000+200000
  68198 words of font info for 267 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 51i,11n,74p,1374b,1812s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 51i,11n,74p,1374b,1875s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on thesis.pdf (73 pages).
+Output written on thesis.pdf (75 pages).
