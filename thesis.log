@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2017.11.29)  3 DEC 2017 15:25
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2017.11.29)  3 DEC 2017 15:44
 entering extended mode
 **thesis.tex
 (C:\Users\simon\Desktop\-nudtpaper_zxm\thesis.tex
@@ -2447,40 +2447,28 @@ File: figures/segmentation.pdf Graphic file (type QTm)
  <use  "figures/segmentation.pdf" >
 File: figures/alg_segmentation.pdf Graphic file (type QTm)
 
-<use  "figures/alg_segmentation.pdf" >
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [43]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [44]
+<use  "figures/alg_segmentation.pdf" > [43]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 41.
-
+ [44]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [45]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [46]
 File: figures/hash_shuffle.pdf Graphic file (type QTm)
 
 <use  "figures/hash_shuffle.pdf" >
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [46]
 File: figures/sort_shuffle.pdf Graphic file (type QTm)
- <use  "figures/sort_shuffle.pdf" >
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [47]
+<use  "figures/sort_shuffle.pdf" > [47]
 File: figures/seg_shuffle.pdf Graphic file (type QTm)
-
-<use  "figures/seg_shuffle.pdf" >)
-(C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap05.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [48]
-[49]
+ <use  "figures/seg_shuffle.pdf" >)
+(C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap05.tex [48] [49]
 File: figures/data_loadPerformance.pdf Graphic file (type QTm)
- <use  "figures/data_loadPerformance.pdf" >
+
+<use  "figures/data_loadPerformance.pdf" >
 File: figures/data_keyValue_ratio.pdf Graphic file (type QTm)
 
 <use  "figures/data_keyValue_ratio.pdf" > [50

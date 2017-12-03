@@ -7,7 +7,7 @@
 在spark在处理文本文件方式的启发下，我们采用了Key-Value的方式来描述一张图片，Key就是图片的文件名，Value就是图片内容的字节流，通过这种方式，就可以用一条记录的形式描述了一张图片，然后将这些记录序列化保存到指定的hdfs目录下，在序列化方式上，Spark-SIFT选用了Hadoop的原生序列化方式，而没有采用Java序列化。这是因为Java序列化后产生的内容容量太大，分布式环境中传输时会十分占用带宽，而hadoop 序列化产生的内容十分简洁，容量更小，这有助于减少分布式处理时的数据传输量。通过这种将图片转换成记录的形式，Spark在读取该目录时，就可以一次性将目录下的记录加载进来，从能提供了读写的效率。图\ref{fig:kv_image}显示了整个设计的框架。
 \begin{figure}[htp]
 \centering
-\includegraphics{kv_image}
+\includegraphics[width=120mm,height=77mm]{kv_image}
 \caption{key-value描述图片方式}
 \label{fig:kv_image}
 \end{figure}
@@ -21,7 +21,7 @@ Spark-SIFT在对某些数据集进行特征提取时会出现严重的负载不�
 针对上面的问题，我们采用分割图片的方式，使图片集中各图片的大小尽可能相同，以适应Spark的任务分配和负载均衡策略，使各个任务的运行时间基本相同。图片分割的具体工作原理如图\ref{fig:segmentation}所示：
 \begin{figure}[htp]
 \centering
-\includegraphics[width=130mm,height=93mm]{segmentation}
+\includegraphics[width=117mm,height=93mm]{segmentation}
 \caption{分割式特征提取算法}
 \label{fig:segmentation}
 \end{figure}
