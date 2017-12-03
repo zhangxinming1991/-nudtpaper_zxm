@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2017.11.29)  3 DEC 2017 12:12
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2017.11.29)  3 DEC 2017 15:25
 entering extended mode
 **thesis.tex
 (C:\Users\simon\Desktop\-nudtpaper_zxm\thesis.tex
@@ -2231,20 +2231,21 @@ File: figures/sparkfw.pdf Graphic file (type QTm)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8]
-File: figures/hdfsfw.jpg Graphic file (type QTm)
+File: figures/hdfsfw.pdf Graphic file (type QTm)
 
-<use  "figures/hdfsfw.jpg" > [9]
+<use  "figures/hdfsfw.pdf" >
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9]
 File: figures/workfw.pdf Graphic file (type QTm)
- <use  "figures/workfw.pdf" >
+
+<use  "figures/workfw.pdf" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [10]
 File: figures/paperfw.pdf Graphic file (type QTm)
 
-<use  "figures/paperfw.pdf" >
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [11]
+<use  "figures/paperfw.pdf" > [11]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [12])
@@ -2436,26 +2437,26 @@ File: figures/00021358_match.png Graphic file (type QTm)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [41]
-File: figures/kv_image.png Graphic file (type QTm)
+File: figures/kv_image.pdf Graphic file (type QTm)
 
-<use  "figures/kv_image.png" > [42
+<use  "figures/kv_image.pdf" > [42
 
 
 ]
-File: figures/segmentation.png Graphic file (type QTm)
- <use  "figures/segmentation.png" >
+File: figures/segmentation.pdf Graphic file (type QTm)
+ <use  "figures/segmentation.pdf" >
 File: figures/alg_segmentation.pdf Graphic file (type QTm)
 
 <use  "figures/alg_segmentation.pdf" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [43]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 41.
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [44]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 41.
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [45]
@@ -2470,9 +2471,9 @@ File: figures/sort_shuffle.pdf Graphic file (type QTm)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [47]
-File: figures/seg_shuffle.png Graphic file (type QTm)
+File: figures/seg_shuffle.pdf Graphic file (type QTm)
 
-<use  "figures/seg_shuffle.png" >)
+<use  "figures/seg_shuffle.pdf" >)
 (C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap05.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 

@@ -53,10 +53,10 @@
 \contentsline {chapter}{\numberline {4}Spark-SIFT系统的三种性能优化方案}{42}{chapter.4}
 \contentsline {section}{\numberline {4.1}key-value的图片描述数据结构}{42}{section.4.1}
 \contentsline {section}{\numberline {4.2}分割式图片特征提取算法}{42}{section.4.2}
-\contentsline {section}{\numberline {4.3}Shuffle-Efficient的特征提取算法}{46}{section.4.3}
+\contentsline {section}{\numberline {4.3}Shuffle-Efficient的特征提取算法}{47}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}Shuffle原理}{47}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}高效的分区划分}{48}{subsection.4.3.2}
-\contentsline {section}{\numberline {4.4}本章小结}{49}{section.4.4}
+\contentsline {section}{\numberline {4.4}本章小结}{48}{section.4.4}
 \contentsline {chapter}{\numberline {5}Spark-SIFT性能测试和分析}{50}{chapter.5}
 \contentsline {section}{\numberline {5.1}实验环境}{50}{section.5.1}
 \contentsline {section}{\numberline {5.2}实验结果与分析}{50}{section.5.2}

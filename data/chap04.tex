@@ -21,7 +21,7 @@ Spark-SIFT在对某些数据集进行特征提取时会出现严重的负载不�
 针对上面的问题，我们采用分割图片的方式，使图片集中各图片的大小尽可能相同，以适应Spark的任务分配和负载均衡策略，使各个任务的运行时间基本相同。图片分割的具体工作原理如图\ref{fig:segmentation}所示：
 \begin{figure}[htp]
 \centering
-\includegraphics{segmentation}
+\includegraphics[width=130mm,height=93mm]{segmentation}
 \caption{分割式特征提取算法}
 \label{fig:segmentation}
 \end{figure}
@@ -124,7 +124,7 @@ Spark在执行Map-Reduce操作时，需要将处理的数据集分发到各个�
 
 \begin{figure}[htp]
 \centering
-\includegraphics{seg_shuffle}
+\includegraphics[width=86mm,height=95mm]{seg_shuffle}
 \caption{分割式算法的Shuffle操作}
 \label{fig:seg_shuffle}
 \end{figure}

@@ -21,7 +21,7 @@ Spark-SIFT在对某些数据集进行特征提取时会出现严重的负载不�
 针对上面的问题，我们采用分割图片的方式，使图片集中各图片的大小尽可能相同，以适应Spark的任务分配和负载均衡策略，使各个任务的运行时间基本相同。图片分割的具体工作原理如图\ref{fig:segmentation}所示：
 \begin{figure}[htp]
 \centering
-\includegraphics{segmentation}
+\includegraphics[width=81,height=59]{segmentation}
 \caption{分割式特征提取算法}
 \label{fig:segmentation}
 \end{figure}
@@ -90,7 +90,7 @@ public static SequenceImage GetOnePart(byte [][]pixel, int rowStart, int colStar
 Spark在执行Map-Reduce操作时，需要将处理的数据集分发到各个节点上，在数据被处理完后，再从各个节点上回收结果，这就是一个具有Shuffle操作的过程。Shuffle操作存在大量的磁盘IO和网络传输，十分损耗性能。spark中存在两种Shuffle机制，分别是Hash Based Shuffle机制和Sort Based Shuffle机制。Hash Based Shuffle，正如名字所示，该Shuffle机制是跟Hash值相关的，这个Hash值指的是key的Hash值，Spark 会根据key的Hash值算出对应的分区，这个分区其实就是下游的一个任务，然后将上游任务的结果单独的写到一个文件中，下游的任务拉取相应的结果文件，继续任务的执行，整个过程如图\ref{fig:hash_shuffle}所示。
 \begin{figure}[htp]
 \centering
-\includegraphics[width=148mm,height=84mm]{hash_shuffle}
+\includegraphics[width=150mm,height=59mm]{hash_shuffle}
 \caption{hash based shuffle机制}
 \label{fig:hash_shuffle}
 \end{figure}
@@ -100,7 +100,7 @@ Spark在执行Map-Reduce操作时，需要将处理的数据集分发到各个�
 针对Hash Based Shuffle产生大量中间文件的问题，Spark中又出现了一个Sort Based Shuffle机制，在该机制下，每个上游的任务会把结果只写到一个文件中，然后生成一个index，下游的任务根据index的信息，到对应的文件上读取上游结果信息。通过这样方式，就可以大大的减少中间文件的数量，如图\ref{fig:sort_shuffle}所示，该方式下，过程文件仅为4个。
 \begin{figure}[htp]
 \centering
-\includegraphics{sort_shuffle}
+\includegraphics[width=150mm,height=59mm]{sort_shuffle}
 \caption{sort based shuffle机制}
 \label{fig:sort_shuffle}
 \end{figure}
