@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2017.11.29)  4 DEC 2017 23:30
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (MiKTeX 2.9) (preloaded format=xelatex 2017.11.29)  6 DEC 2017 15:10
 entering extended mode
 **thesis.tex
 (C:\Users\simon\Desktop\-nudtpaper_zxm\thesis.tex
@@ -6,6 +6,9 @@ LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for loaded.
 (C:\Users\simon\Desktop\-nudtpaper_zxm\nudtpaper.cls
 Document Class: nudtpaper 2011/07/17 v2.2 NUDT paper template
+
+Package nudtpaper Warning: Unknown Option 'openright' on input line 49.
+
 (C:\CTEX\MiKTeX\tex\latex\base\ifthen.sty
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
@@ -1250,53 +1253,53 @@ Package: nomencl 2005/09/22 v4.2 Nomenclature package (LN)
 LaTeX Warning: Label `algDiveModel' multiply defined.
 
 )
-LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 68.
-LaTeX Font Info:    Try loading font information for OML+txmi on input line 68.
+LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 69.
+LaTeX Font Info:    Try loading font information for OML+txmi on input line 69.
 
  (C:\CTEX\MiKTeX\tex\latex\txfonts\omltxmi.fd
 File: omltxmi.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMS/txsy/m/n on input line 68.
-LaTeX Font Info:    Try loading font information for OMS+txsy on input line 68.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OMS/txsy/m/n on input line 69.
+LaTeX Font Info:    Try loading font information for OMS+txsy on input line 69.
 
 
 (C:\CTEX\MiKTeX\tex\latex\txfonts\omstxsy.fd
 File: omstxsy.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMX/txex/m/n on input line 68.
-LaTeX Font Info:    Try loading font information for OMX+txex on input line 68.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OMX/txex/m/n on input line 69.
+LaTeX Font Info:    Try loading font information for OMX+txex on input line 69.
 
 
 (C:\CTEX\MiKTeX\tex\latex\txfonts\omxtxex.fd
 File: omxtxex.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for U/txexa/m/n on input line 68.
-LaTeX Font Info:    Try loading font information for U+txexa on input line 68.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for U/txexa/m/n on input line 69.
+LaTeX Font Info:    Try loading font information for U+txexa on input line 69.
 
 (C:\CTEX\MiKTeX\tex\latex\txfonts\utxexa.fd
 File: utxexa.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 68.
-LaTeX Font Info:    Try loading font information for T3+cmr on input line 68.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 69.
+LaTeX Font Info:    Try loading font information for T3+cmr on input line 69.
 
 (C:\CTEX\MiKTeX\tex\latex\tipa\t3cmr.fd
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
 Requested font "Times New Roman/ICU:script=latn;language=DFLT;mapping=tex-text;
 " at 12.045pt
  -> C:/Windows/Fonts/times.ttf
@@ -1345,7 +1348,7 @@ Package: ltcaption 2011/09/12 v1.3 longtable captions (AR)
 )
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box51
-Package hyperref Info: Link coloring ON on input line 68.
+Package hyperref Info: Link coloring ON on input line 69.
 
 (C:\CTEX\MiKTeX\tex\latex\hyperref\nameref.sty
 Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
@@ -1355,9 +1358,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count365
 )
-LaTeX Info: Redefining \ref on input line 68.
-LaTeX Info: Redefining \pageref on input line 68.
-LaTeX Info: Redefining \nameref on input line 68.
+LaTeX Info: Redefining \ref on input line 69.
+LaTeX Info: Redefining \pageref on input line 69.
+LaTeX Info: Redefining \nameref on input line 69.
 
 (C:\Users\simon\Desktop\-nudtpaper_zxm\thesis.out)
 (C:\Users\simon\Desktop\-nudtpaper_zxm\thesis.out)
@@ -1417,9 +1420,9 @@ Requested font "Adobe Song Std/ICU:script=latn;language=DFLT;mapping=tex-text;"
 Requested font "Times New Roman/ICU:script=latn;language=DFLT;mapping=tex-text;
 " at 10.53937pt
  -> C:/Windows/Fonts/times.ttf
-LaTeX Font Info:    Calculating math sizes for size <10.53937> on input line 75
+LaTeX Font Info:    Calculating math sizes for size <10.53937> on input line 76
 .
-LaTeX Font Info:    Try loading font information for OT1+txr on input line 75.
+LaTeX Font Info:    Try loading font information for OT1+txr on input line 76.
 
 (C:\CTEX\MiKTeX\tex\latex\txfonts\ot1txr.fd
 File: ot1txr.fd 2000/12/15 v3.1
@@ -1448,7 +1451,7 @@ Requested font "txex" at 7.37752pt
  -> txex
 Requested font "txex" at 5.26968pt
  -> txex
-LaTeX Font Info:    Try loading font information for U+txsya on input line 75.
+LaTeX Font Info:    Try loading font information for U+txsya on input line 76.
 
 (C:\CTEX\MiKTeX\tex\latex\txfonts\utxsya.fd
 File: utxsya.fd 2000/12/15 v3.1
@@ -1459,7 +1462,7 @@ Requested font "txsya" at 7.37752pt
  -> txsya
 Requested font "txsya" at 5.26968pt
  -> txsya
-LaTeX Font Info:    Try loading font information for U+txsyb on input line 75.
+LaTeX Font Info:    Try loading font information for U+txsyb on input line 76.
 
 (C:\CTEX\MiKTeX\tex\latex\txfonts\utxsyb.fd
 File: utxsyb.fd 2000/12/15 v3.1
@@ -1476,7 +1479,7 @@ Requested font "txi" at 7.37752pt
  -> txi
 Requested font "txi" at 5.26968pt
  -> txi
-LaTeX Font Info:    Try loading font information for U+txmia on input line 75.
+LaTeX Font Info:    Try loading font information for U+txmia on input line 76.
 
 (C:\CTEX\MiKTeX\tex\latex\txfonts\utxmia.fd
 File: utxmia.fd 2000/12/15 v3.1
@@ -1487,7 +1490,7 @@ Requested font "txmia" at 7.37752pt
  -> txmia
 Requested font "txmia" at 5.26968pt
  -> txmia
-LaTeX Font Info:    Try loading font information for U+txsyc on input line 75.
+LaTeX Font Info:    Try loading font information for U+txsyc on input line 76.
 
 (C:\CTEX\MiKTeX\tex\latex\txfonts\utxsyc.fd
 File: utxsyc.fd 2000/12/15 v3.1
@@ -1505,15 +1508,15 @@ Requested font "txexa" at 7.37752pt
 Requested font "txexa" at 5.26968pt
  -> txexa
 LaTeX Font Info:    Font shape `U/fsy/m/n' will be
-(Font)              scaled to size 9.48535pt on input line 75.
+(Font)              scaled to size 9.48535pt on input line 76.
 Requested font "psyr" at 9.48535pt
  -> psyr
 LaTeX Font Info:    Font shape `U/fsy/m/n' will be
-(Font)              scaled to size 6.63971pt on input line 75.
+(Font)              scaled to size 6.63971pt on input line 76.
 Requested font "psyr" at 6.63971pt
  -> psyr
 LaTeX Font Info:    Font shape `U/fsy/m/n' will be
-(Font)              scaled to size 4.74268pt on input line 75.
+(Font)              scaled to size 4.74268pt on input line 76.
 Requested font "psyr" at 4.74268pt
  -> psyr
 Requested font "txb" at 10.53937pt
@@ -1666,7 +1669,7 @@ Requested font "Adobe Song Std/ICU" at 22.08249pt
 
 
 LaTeX Font Warning: Font shape `EU1/AdobeSongStd(0)/bx/n' undefined
-(Font)              using `EU1/AdobeSongStd(0)/m/n' instead on input line 75.
+(Font)              using `EU1/AdobeSongStd(0)/m/n' instead on input line 76.
 
 Requested font "Adobe Song Std/ICU:script=latn;language=DFLT;mapping=tex-text;"
  at 22.08249pt
@@ -1677,7 +1680,7 @@ Requested font "Adobe Song Std/ICU:script=latn;language=DFLT;mapping=tex-text;"
 Requested font "Times New Roman/ICU:script=latn;language=DFLT;mapping=tex-text;
 " at 14.05249pt
  -> C:/Windows/Fonts/times.ttf
-LaTeX Font Info:    Calculating math sizes for size <14.05249> on input line 75
+LaTeX Font Info:    Calculating math sizes for size <14.05249> on input line 76
 .
 Requested font "txr" at 14.05249pt
  -> txr
@@ -1740,15 +1743,15 @@ Requested font "txexa" at 9.83669pt
 Requested font "txexa" at 7.02625pt
  -> txexa
 LaTeX Font Info:    Font shape `U/fsy/m/n' will be
-(Font)              scaled to size 12.64714pt on input line 75.
+(Font)              scaled to size 12.64714pt on input line 76.
 Requested font "psyr" at 12.64714pt
  -> psyr
 LaTeX Font Info:    Font shape `U/fsy/m/n' will be
-(Font)              scaled to size 8.85295pt on input line 75.
+(Font)              scaled to size 8.85295pt on input line 76.
 Requested font "psyr" at 8.85295pt
  -> psyr
 LaTeX Font Info:    Font shape `U/fsy/m/n' will be
-(Font)              scaled to size 6.32356pt on input line 75.
+(Font)              scaled to size 6.32356pt on input line 76.
 Requested font "psyr" at 6.32356pt
  -> psyr
 Requested font "txb" at 14.05249pt
@@ -1836,8 +1839,10 @@ Requested font "Adobe Song Std/ICU:script=latn;language=DFLT;mapping=tex-text;"
 File: se-ascii-print.def 2010/03/01 v1.8 stringenc: Printable ASCII characters
 ) [1
 
+] [2
+
 ]
-LaTeX Font Info:    Calculating math sizes for size <16.06> on input line 75.
+LaTeX Font Info:    Calculating math sizes for size <16.06> on input line 76.
 Requested font "txr" at 16.06pt
  -> txr
 Requested font "txr" at 11.24194pt
@@ -1899,15 +1904,15 @@ Requested font "txexa" at 11.24194pt
 Requested font "txexa" at 8.03pt
  -> txexa
 LaTeX Font Info:    Font shape `U/fsy/m/n' will be
-(Font)              scaled to size 14.45389pt on input line 75.
+(Font)              scaled to size 14.45389pt on input line 76.
 Requested font "psyr" at 14.45389pt
  -> psyr
 LaTeX Font Info:    Font shape `U/fsy/m/n' will be
-(Font)              scaled to size 10.11768pt on input line 75.
+(Font)              scaled to size 10.11768pt on input line 76.
 Requested font "psyr" at 10.11768pt
  -> psyr
 LaTeX Font Info:    Font shape `U/fsy/m/n' will be
-(Font)              scaled to size 7.22694pt on input line 75.
+(Font)              scaled to size 7.22694pt on input line 76.
 Requested font "psyr" at 7.22694pt
  -> psyr
 Requested font "txb" at 16.06pt
@@ -1937,20 +1942,25 @@ Requested font "txbex" at 8.03pt
 Requested font "Arial/B/ICU:script=latn;language=DFLT;mapping=tex-text;" at 16.
 06pt
  -> C:/Windows/Fonts/arialbd.ttf
- [2
+ [3
+
+] [4
 
 ]
 File: figures/chengxin.jpg Graphic file (type QTm)
 
 <use  "figures/chengxin.jpg" >
-Overfull \hbox (6.2076pt too wide) in paragraph at lines 75--75
+Overfull \hbox (6.2076pt too wide) in paragraph at lines 76--76
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 9.11081pt on input line 75.
+LaTeX Warning: Float too large for page by 9.11081pt on input line 76.
 
-[3]
+[5] [6
+
+
+]
 Requested font "Arial/ICU:script=latn;language=DFLT;mapping=tex-text;" at 12.04
 5pt
  -> C:/Windows/Fonts/arial.ttf
@@ -2013,7 +2023,6 @@ Requested font "Adobe Song Std/ICU:script=latn;language=DFLT;mapping=tex-text;"
 
 
 
-
 ])
 \tf@toc=\write5
  [2]
@@ -2021,12 +2030,14 @@ Requested font "Adobe Song Std/ICU:script=latn;language=DFLT;mapping=tex-text;"
 \tf@lot=\write6
  [3
 
+] [4
+
 ]
-(C:\Users\simon\Desktop\-nudtpaper_zxm\thesis.lof [4
+(C:\Users\simon\Desktop\-nudtpaper_zxm\thesis.lof [5
 
 ])
 \tf@lof=\write7
- [5]
+ [6]
 (C:\Users\simon\Desktop\-nudtpaper_zxm\data/abstract.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -2186,6 +2197,7 @@ Requested font "Adobe Song Std/ICU:script=latn;language=DFLT;mapping=tex-text;"
 
 
 
+
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -2249,7 +2261,10 @@ File: figures/paperfw.pdf Graphic file (type QTm)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [12])
-(C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap02.tex [13] [14
+[13] [14
+
+] (C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap02.tex [15
+
 
 
 ]
@@ -2258,7 +2273,7 @@ File: figures/gausspy.jpg Graphic file (type QTm)
 <use  "figures/gausspy.jpg" >
 Underfull \vbox (badness 1552) has occurred while \output is active []
 
- [15]
+ [16]
 File: figures/gaussDog.jpg Graphic file (type QTm)
 
 <use  "figures/gaussDog.jpg" >
@@ -2266,7 +2281,7 @@ File: figures/py_dog.jpg Graphic file (type QTm)
  <use  "figures/py_dog.jpg" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [16]
+ [17]
 File: figures/pole_detect.jpg Graphic file (type QTm)
 
 <use  "figures/pole_detect.jpg" >
@@ -2274,14 +2289,14 @@ File: figures/keypoint_detect.jpg Graphic file (type QTm)
  <use  "figures/keypoint_detect.jpg" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [17]
+ [18]
 File: figures/direct_histogram.jpg Graphic file (type QTm)
 
 <use  "figures/direct_histogram.jpg" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [18]
-[19]
+ [19]
+[20]
 File: figures/blockmanager.pdf Graphic file (type QTm)
  <use  "figures/blockmanager.pdf" >
 
@@ -2322,7 +2337,7 @@ xt;" at 10.95pt
 Requested font "Adobe Fangsong Std/ICU:script=latn;language=DFLT;mapping=tex-te
 xt;" at 10.95pt
  -> C:/Windows/Fonts/AdobeFangsongStd-Regular (v5.010).otf
- [20]
+ [21]
 Requested font "Courier New/B/ICU:script=latn;language=DFLT;mapping=tex-text;" 
 at 10.95pt
  -> C:/Windows/Fonts/courbd.ttf
@@ -2331,16 +2346,16 @@ File: figures/rdd_cache.pdf Graphic file (type QTm)
 <use  "figures/rdd_cache.pdf" >
 Underfull \vbox (badness 3343) has occurred while \output is active []
 
- [21]
+ [22]
 File: figures/dependency.png Graphic file (type QTm)
 
-<use  "figures/dependency.png" > [22]
+<use  "figures/dependency.png" > [23]
 File: figures/schedulerfw.png Graphic file (type QTm)
  <use  "figures/schedulerfw.png" >
-[23]
+[24]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [24]
+ [25]
 Overfull \hbox (47.68672pt too wide) in paragraph at lines 260--262
 \xeCJK@rm/bx/n/12.045 内 容。| 内 存 调 优 过 程 中，| 有 三 个 �
 �� 向 值 得 考 虑，| 分 别 是 \EU1/TimesNewRoman(0)/m/n/12.045 JVM \xe
@@ -2348,10 +2363,12 @@ CJK@rm/bx/n/12.045 调 优\EU1/TimesNewRoman(0)/m/n/12.045 ,OOM(OutOfMemoryErro
 r)
  []
 
-[25]
+[26]
 File: figures/collect.pdf Graphic file (type QTm)
- <use  "figures/collect.pdf" > [26])
-(C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap03.tex [27] [28]
+ <use  "figures/collect.pdf" > [27]) [28] [29] [30
+
+]
+(C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap03.tex
 File: figures/spark_sift_fw.png Graphic file (type QTm)
 
 <use  "figures/spark_sift_fw.png" >
@@ -2359,21 +2376,22 @@ File: figures/spsift_core_fw.png Graphic file (type QTm)
  <use  "figures/spsift_core_fw.png" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [29
+ [31
+
 
 
 ]
 File: figures/image_represent.pdf Graphic file (type QTm)
 
-<use  "figures/image_represent.pdf" > [30]
+<use  "figures/image_represent.pdf" > [32]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [31]
-[32]
+ [33]
+[34]
 File: figures/spkeypoint.pdf Graphic file (type QTm)
  <use  "figures/spkeypoint.pdf" >
 File: figures/SpMemoryLocalFeatureList.pdf Graphic file (type QTm)
@@ -2381,26 +2399,26 @@ File: figures/SpMemoryLocalFeatureList.pdf Graphic file (type QTm)
 <use  "figures/SpMemoryLocalFeatureList.pdf" >
 File: figures/alg_sparksift.pdf Graphic file (type QTm)
 
-<use  "figures/alg_sparksift.pdf" > [33]
+<use  "figures/alg_sparksift.pdf" > [35]
 Requested font "Times New Roman/ICU:script=latn;language=DFLT;mapping=tex-text;
 " at 6.0pt
  -> C:/Windows/Fonts/times.ttf
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [34]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [35]
-File: figures/alg_sequence.pdf Graphic file (type QTm)
-
-<use  "figures/alg_sequence.pdf" > [36]
+ [36]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [37]
+File: figures/alg_sequence.pdf Graphic file (type QTm)
+
+<use  "figures/alg_sequence.pdf" > [38]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [39]
 File: figures/try_stage.pdf Graphic file (type QTm)
 
-<use  "figures/try_stage.pdf" > [38]
+<use  "figures/try_stage.pdf" > [40]
 Overfull \hbox (42.43636pt too wide) in paragraph at lines 290--291
 []\xeCJK@rm/bx/n/12.045 在 \EU1/TimesNewRoman(0)/m/n/12.045 Spark \xeCJK@rm/bx
 /n/12.045 源 码 根 目 录 下 创 建 一 个 新 的 \EU1/TimesNewRoman(0)
@@ -2424,7 +2442,7 @@ LaTeX Font Warning: Font shape `EU1/TimesNewRoman(0)/tt/n' undefined
 File: figures/find_finish.png Graphic file (type QTm)
 <use  "figures/find_finish.png" >
 File: figures/00021292_match.png Graphic file (type QTm)
- <use  "figures/00021292_match.png" > [39]
+ <use  "figures/00021292_match.png" > [41]
 File: figures/00021324_match.png Graphic file (type QTm)
 
 <use  "figures/00021324_match.png" >
@@ -2432,14 +2450,17 @@ File: figures/00021353_match.png Graphic file (type QTm)
  <use  "figures/00021353_match.png" >
 File: figures/00021358_match.png Graphic file (type QTm)
 
-<use  "figures/00021358_match.png" >)
-(C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap04.tex [40]
+<use  "figures/00021358_match.png" >) [42]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [41]
+ [43]
+[44
+
+] (C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap04.tex
 File: figures/kv_image.pdf Graphic file (type QTm)
 
-<use  "figures/kv_image.pdf" > [42
+<use  "figures/kv_image.pdf" > [45
+
 
 
 ]
@@ -2447,37 +2468,38 @@ File: figures/segmentation.pdf Graphic file (type QTm)
  <use  "figures/segmentation.pdf" >
 File: figures/alg_segmentation.pdf Graphic file (type QTm)
 
-<use  "figures/alg_segmentation.pdf" > [43]
+<use  "figures/alg_segmentation.pdf" > [46]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 41.
- [44]
+ [47]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [45]
+ [48]
 File: figures/hash_shuffle.pdf Graphic file (type QTm)
 
 <use  "figures/hash_shuffle.pdf" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [46]
+ [49]
 File: figures/sort_shuffle.pdf Graphic file (type QTm)
 
-<use  "figures/sort_shuffle.pdf" > [47]
+<use  "figures/sort_shuffle.pdf" > [50]
 File: figures/seg_shuffle.pdf Graphic file (type QTm)
  <use  "figures/seg_shuffle.pdf" >)
-(C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap05.tex [48] [49]
+[51] [52] (C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap05.tex
 File: figures/data_loadPerformance.pdf Graphic file (type QTm)
 
 <use  "figures/data_loadPerformance.pdf" >
 File: figures/data_keyValue_ratio.pdf Graphic file (type QTm)
 
-<use  "figures/data_keyValue_ratio.pdf" > [50
+<use  "figures/data_keyValue_ratio.pdf" > [53
+
 
 
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [51]
+ [54]
 File: figures/data_seg_speed.pdf Graphic file (type QTm)
 
 <use  "figures/data_seg_speed.pdf" >
@@ -2490,50 +2512,56 @@ File: figures/data_fourWays.pdf Graphic file (type QTm)
  <use  "figures/data_fourWays.pdf" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [52]
+ [55]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [53]
+ [56]
 File: figures/data_seg_speedup.pdf Graphic file (type QTm)
 
 <use  "figures/data_seg_speedup.pdf" >
 File: figures/data_spark_gpu.pdf Graphic file (type QTm)
  <use  "figures/data_spark_gpu.pdf" >)
-(C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap06.tex [54]
+[57]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [55]
+ [58]
+(C:\Users\simon\Desktop\-nudtpaper_zxm\data/chap06.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [56
+ [59
+
 
 
 ])
-(C:\Users\simon\Desktop\-nudtpaper_zxm\data/ack.tex [57]
+(C:\Users\simon\Desktop\-nudtpaper_zxm\data/ack.tex [60]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [58
+ [61
 
 ])
-[59] (C:\Users\simon\Desktop\-nudtpaper_zxm\thesis.bbl
+[62] (C:\Users\simon\Desktop\-nudtpaper_zxm\thesis.bbl
 Underfull \hbox (badness 7522) in paragraph at lines 25--27
 []\EU1/TimesNewRoman(0)/tt/n/12.045 Art and Architecture. [][]$[][][][][] [] []
  [] [][][] [] [][][][][] [] [][][] [] [][][][][][][][] [] [][][][][] []
  []
 
-[60
-
-
-] [61]) (C:\Users\simon\Desktop\-nudtpaper_zxm\data/resume.tex [62])
 [63
+
+
+] [64]) (C:\Users\simon\Desktop\-nudtpaper_zxm\data/resume.tex [65] [66
+
+])
+[67
+
+] [68
 
 ]
 \tf@thm=\write8
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 107.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 107.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 114.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 114.
  (C:\Users\simon\Desktop\-nudtpaper_zxm\thesis.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 107.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 107.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 114.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 114.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -2543,12 +2571,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 27076 strings out of 430478
- 485882 string characters out of 3191501
- 608340 words of memory out of 3000000
- 29707 multiletter control sequences out of 15000+200000
+ 27082 strings out of 430478
+ 485999 string characters out of 3191501
+ 608396 words of memory out of 3000000
+ 29713 multiletter control sequences out of 15000+200000
  68198 words of font info for 267 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  51i,11n,74p,1374b,1875s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on thesis.pdf (75 pages).
+Output written on thesis.pdf (84 pages).

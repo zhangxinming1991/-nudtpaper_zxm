@@ -1,7 +1,7 @@
-\contentsline {table}{\numberline {2.1}{\ignorespaces RDD转换操作\relax }}{21}{table.caption.21}
-\contentsline {table}{\numberline {2.2}{\ignorespaces RDD动作操作\relax }}{21}{table.caption.22}
-\contentsline {table}{\numberline {3.1}{\ignorespaces SpFImage 主要功能函数\relax }}{31}{table.caption.31}
-\contentsline {table}{\numberline {3.2}{\ignorespaces SpImageUtilities 主要功能函数\relax }}{32}{table.caption.32}
-\contentsline {table}{\numberline {3.3}{\ignorespaces Writable对应类型\relax }}{32}{table.caption.33}
-\contentsline {table}{\numberline {3.4}{\ignorespaces Spark-SIFT系统涉及的HDFS API\relax }}{38}{table.caption.38}
+\contentsline {table}{\numberline {2.1}{\ignorespaces RDD转换操作\relax }}{22}{table.caption.21}
+\contentsline {table}{\numberline {2.2}{\ignorespaces RDD动作操作\relax }}{22}{table.caption.22}
+\contentsline {table}{\numberline {3.1}{\ignorespaces SpFImage 主要功能函数\relax }}{33}{table.caption.31}
+\contentsline {table}{\numberline {3.2}{\ignorespaces SpImageUtilities 主要功能函数\relax }}{34}{table.caption.32}
+\contentsline {table}{\numberline {3.3}{\ignorespaces Writable对应类型\relax }}{34}{table.caption.33}
+\contentsline {table}{\numberline {3.4}{\ignorespaces Spark-SIFT系统涉及的HDFS API\relax }}{40}{table.caption.38}
 \contentsfinish 

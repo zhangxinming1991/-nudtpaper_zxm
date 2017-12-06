@@ -1,4 +1,5 @@
-﻿\chapter{相关原理分析}
+﻿ \documentclass[15]{nudtpaper}
+\chapter{相关原理分析}
 \label{xiangguanyuanli}
 在本章中，将针对本文涉及的关键技术的原理进行分析和解读，这些关键技术是指导本文工作开展的理论支撑，只有把这些技术原理充分理解后，才能解决设计过程中遇到的难题，才能进行一系列的优化工作。这些技术原理包括，图像表示原理，SIFT算法原理，spark内存技术原理，spark任务调度原理，spark 性能优化原理以及HDFS存储原理。
 \section{图像表示原理}
@@ -205,7 +206,7 @@ def cache(): this.type = persist()
 假设首先进行了RDD0$\rightarrow$RDD1$\rightarrow$RDD2的计算作业，如果RDD1已经被缓存在内存中，那么后续在进行RDD0$\rightarrow$RDD1$\rightarrow$RDD3的计算作业时，就不需要从头开始，直接从RDD1往下执行作业即可，因此计算速度得到了很大的提升，具体过程如下图\ref{fig:rdd_cache}所示：
 \begin{figure}[htp]
 \centering
-\includegraphics[width=11,height=12]{rdd_cache}
+\includegraphics[width=119mm,height=134mm]{rdd_cache}
 \caption{RDD 缓存加速原理}
 \label{fig:rdd_cache}
 \end{figure}
